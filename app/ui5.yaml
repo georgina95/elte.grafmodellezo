@@ -10,7 +10,7 @@ server:
     configuration:
       backend:
       - path: /v2
-        url: https://110a7190trial-dev-grafmodellezo-srv.cfapps.eu10.hana.ondemand.com
+        url: http://localhost:4004
         scp: false
         destination: cds_be
       ui5:
