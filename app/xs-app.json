@@ -1,11 +1,11 @@
 {
-  "welcomeFile": "/manifest.json",
+  "welcomeFile": "/index.html",
   "authenticationMethod": "route",
   "routes": [
     {
       "source": "^/v2/(.*)$",
       "target": "/v2/$1",
-      "destination": "grafmodellezo-app",
+      "destination": "cds_be",
       "authenticationType": "xsuaa",
       "csrfProtection": false
     },

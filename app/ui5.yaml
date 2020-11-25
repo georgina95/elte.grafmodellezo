@@ -12,7 +12,7 @@ server:
       - path: /v2
         url: https://110a7190trial-dev-grafmodellezo-srv.cfapps.eu10.hana.ondemand.com
         scp: false
-        #destination: my_destination
+        destination: cds_be
       ui5:
         path: 
         - /resources
