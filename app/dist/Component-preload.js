@@ -1,0 +1,14 @@
+//@ui5-bundle elte/grafmodellezo/app/Component-preload.js
+jQuery.sap.registerPreloadedModules({
+"version":"2.0",
+"modules":{
+	"elte/grafmodellezo/app/Component.js":function(){sap.ui.define(["sap/ui/core/UIComponent","sap/ui/Device","elte/grafmodellezo/app/model/models"],function(e,t,i){"use strict";return e.extend("elte.grafmodellezo.app.Component",{metadata:{manifest:"json"},init:function(){e.prototype.init.apply(this,arguments);this.getRouter().initialize();this.setModel(i.createDeviceModel(),"device")}})});
+},
+	"elte/grafmodellezo/app/controller/Main.controller.js":function(){sap.ui.define(["sap/ui/core/mvc/Controller"],function(e){"use strict";return e.extend("elte.grafmodellezo.app.controller.Main",{onInit:function(){}})});
+},
+	"elte/grafmodellezo/app/i18n/i18n.properties":'title=Title\nappTitle=Main\nappDescription=App Description\n',
+	"elte/grafmodellezo/app/manifest.json":'{"_version":"1.12.0","sap.app":{"id":"elte.grafmodellezo.app","type":"application","i18n":"i18n/i18n.properties","applicationVersion":{"version":"1.0.0"},"title":"","description":"","resources":"resources.json","ach":"ach","dataSources":{"mainService":{"uri":"/v2/catalog/","type":"OData","settings":{"odataVersion":"2.0"}}}},"sap.ui":{"technology":"UI5","icons":{"icon":"sap-icon://task","favIcon":"","phone":"","phone@2":"","tablet":"","tablet@2":""},"deviceTypes":{"desktop":true,"tablet":true,"phone":true}},"sap.ui5":{"flexEnabled":false,"rootView":{"viewName":"elte.grafmodellezo.app.view.Main","type":"XML","async":true,"id":"Main"},"dependencies":{"minUI5Version":"1.66.0","libs":{"sap.ui.core":{},"sap.m":{},"sap.ui.layout":{}}},"contentDensities":{"compact":true,"cozy":true},"models":{"i18n":{"type":"sap.ui.model.resource.ResourceModel","settings":{"bundleName":"elte.grafmodellezo.app.i18n.i18n"}},"":{"dataSource":"mainService","preload":true}},"resources":{"css":[{"uri":"css/style.css"}]},"routing":{"config":{"routerClass":"sap.m.routing.Router","viewType":"XML","async":true,"viewPath":"elte.grafmodellezo.app.view","controlAggregation":"pages","controlId":"app","clearControlAggregation":false},"routes":[{"name":"RouteMain","pattern":"RouteMain","target":["TargetMain"]}],"targets":{"TargetMain":{"viewType":"XML","transition":"slide","clearControlAggregation":false,"viewId":"Main","viewName":"Main"}}}}}',
+	"elte/grafmodellezo/app/model/models.js":function(){sap.ui.define(["sap/ui/model/json/JSONModel","sap/ui/Device"],function(e,n){"use strict";return{createDeviceModel:function(){var i=new e(n);i.setDefaultBindingMode("OneWay");return i}}});
+},
+	"elte/grafmodellezo/app/view/Main.view.xml":'<mvc:View\n    controllerName="elte.grafmodellezo.app.controller.Main"\n    xmlns:mvc="sap.ui.core.mvc"\n    displayBlock="true"\n    xmlns="sap.m"\n><Shell id="shell"><App id="app"><pages><Page id="page" title="{i18n>title}"><content /></Page></pages></App></Shell></mvc:View>\n'
+}});

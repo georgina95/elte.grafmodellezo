@@ -26,9 +26,9 @@ modules:
   - name: srv-api
     group: destinations
     properties:
-      name: cds_be
-      url: '~{srv-url}'
       forwardAuthToken: true
+      name: cds_be
+      url: ~{srv-url}
   - name: grafmodellezo-html5-repo-runtime
   - name: grafmodellezo-uaa
   - name: grafmodellezo-destination
@@ -61,12 +61,12 @@ modules:
   type: html5
   path: app
   requires:
-    - name: srv-api
-      group: destinations
-      properties:
-        name: cds_be
-        url: '~{srv-url}'
-        forwardAuthToken: true
+  - name: srv-api
+    group: destinations
+    properties:
+      forwardAuthToken: true
+      name: cds_be
+      url: ~{srv-url}
   build-parameters:
     build-result: dist
     builder: custom

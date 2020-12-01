@@ -1,0 +1,346 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData">
+    <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/Common.xml" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Alias="Common" Namespace="com.sap.vocabularies.Common.v1"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/UI.xml" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Alias="UI" Namespace="com.sap.vocabularies.UI.v1"/>
+    </edmx:Reference>
+    <edmx:DataServices m:DataServiceVersion="2.0">
+        <Schema Namespace="CatalogService" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+            <EntityContainer Name="EntityContainer" m:IsDefaultEntityContainer="true">
+                <EntitySet Name="Hashtags" EntityType="CatalogService.Hashtags"/>
+                <EntitySet Name="Mentions" EntityType="CatalogService.Mentions"/>
+                <EntitySet Name="Places" EntityType="CatalogService.Places"/>
+                <EntitySet Name="Tweets" EntityType="CatalogService.Tweets"/>
+                <EntitySet Name="Users" EntityType="CatalogService.Users"/>
+                <AssociationSet Name="Hashtags_tweet" Association="CatalogService.Hashtags_tweet">
+                    <End Role="Hashtags" EntitySet="Hashtags"/>
+                    <End Role="Tweets" EntitySet="Tweets"/>
+                </AssociationSet>
+                <AssociationSet Name="Mentions_tweet" Association="CatalogService.Mentions_tweet">
+                    <End Role="Mentions" EntitySet="Mentions"/>
+                    <End Role="Tweets" EntitySet="Tweets"/>
+                </AssociationSet>
+                <AssociationSet Name="Mentions_mentioned" Association="CatalogService.Mentions_mentioned">
+                    <End Role="Mentions" EntitySet="Mentions"/>
+                    <End Role="Users" EntitySet="Users"/>
+                </AssociationSet>
+                <AssociationSet Name="Places_tweets" Association="CatalogService.Places_tweets">
+                    <End Role="Places" EntitySet="Places"/>
+                    <End Role="Tweets" EntitySet="Tweets"/>
+                </AssociationSet>
+                <AssociationSet Name="Tweets_place" Association="CatalogService.Tweets_place">
+                    <End Role="Tweets" EntitySet="Tweets"/>
+                    <End Role="Places" EntitySet="Places"/>
+                </AssociationSet>
+                <AssociationSet Name="Tweets_user" Association="CatalogService.Tweets_user">
+                    <End Role="Tweets" EntitySet="Tweets"/>
+                    <End Role="Users" EntitySet="Users"/>
+                </AssociationSet>
+                <AssociationSet Name="Tweets_hashtags" Association="CatalogService.Tweets_hashtags">
+                    <End Role="Tweets" EntitySet="Tweets"/>
+                    <End Role="Hashtags" EntitySet="Hashtags"/>
+                </AssociationSet>
+                <AssociationSet Name="Tweets_mentions" Association="CatalogService.Tweets_mentions">
+                    <End Role="Tweets" EntitySet="Tweets"/>
+                    <End Role="Mentions" EntitySet="Mentions"/>
+                </AssociationSet>
+                <AssociationSet Name="Users_tweets" Association="CatalogService.Users_tweets">
+                    <End Role="Users" EntitySet="Users"/>
+                    <End Role="Tweets" EntitySet="Tweets"/>
+                </AssociationSet>
+            </EntityContainer>
+            <EntityType Name="Hashtags">
+                <Key>
+                    <PropertyRef Name="text"/>
+                    <PropertyRef Name="tweet_id"/>
+                </Key>
+                <Property Name="text" Type="Edm.String" Nullable="false"/>
+                <Property Name="tweet_id" Type="Edm.Guid" Nullable="false"/>
+                <NavigationProperty Name="tweet" Relationship="CatalogService.Hashtags_tweet" FromRole="Hashtags" ToRole="Tweets"/>
+            </EntityType>
+            <EntityType Name="Mentions">
+                <Key>
+                    <PropertyRef Name="mentioned_user_id"/>
+                    <PropertyRef Name="tweet_id"/>
+                </Key>
+                <Property Name="mentioned_user_id" Type="Edm.Guid" Nullable="false"/>
+                <Property Name="tweet_id" Type="Edm.Guid" Nullable="false"/>
+                <NavigationProperty Name="tweet" Relationship="CatalogService.Mentions_tweet" FromRole="Mentions" ToRole="Tweets"/>
+                <NavigationProperty Name="mentioned" Relationship="CatalogService.Mentions_mentioned" FromRole="Mentions" ToRole="Users"/>
+            </EntityType>
+            <EntityType Name="Places">
+                <Key>
+                    <PropertyRef Name="id"/>
+                </Key>
+                <Property Name="id" Type="Edm.Guid" Nullable="false"/>
+                <Property Name="name" Type="Edm.String"/>
+                <Property Name="full_name" Type="Edm.String"/>
+                <Property Name="country" Type="Edm.String"/>
+                <Property Name="country_code" Type="Edm.String"/>
+                <Property Name="place_type" Type="Edm.String"/>
+                <NavigationProperty Name="tweets" Relationship="CatalogService.Places_tweets" FromRole="Places" ToRole="Tweets"/>
+            </EntityType>
+            <EntityType Name="Tweets">
+                <Key>
+                    <PropertyRef Name="id"/>
+                </Key>
+                <Property Name="id" Type="Edm.Guid" Nullable="false"/>
+                <Property Name="created_at" Type="Edm.DateTime" sap:display-format="Date"/>
+                <Property Name="text" Type="Edm.String"/>
+                <Property Name="truncated" Type="Edm.Boolean"/>
+                <Property Name="place_id" Type="Edm.Guid"/>
+                <Property Name="user_id" Type="Edm.Guid"/>
+                <NavigationProperty Name="place" Relationship="CatalogService.Tweets_place" FromRole="Tweets" ToRole="Places"/>
+                <NavigationProperty Name="user" Relationship="CatalogService.Tweets_user" FromRole="Tweets" ToRole="Users"/>
+                <NavigationProperty Name="hashtags" Relationship="CatalogService.Tweets_hashtags" FromRole="Tweets" ToRole="Hashtags"/>
+                <NavigationProperty Name="mentions" Relationship="CatalogService.Tweets_mentions" FromRole="Tweets" ToRole="Mentions"/>
+            </EntityType>
+            <EntityType Name="Users">
+                <Key>
+                    <PropertyRef Name="id"/>
+                </Key>
+                <Property Name="id" Type="Edm.Guid" Nullable="false"/>
+                <Property Name="created_at" Type="Edm.DateTime" sap:display-format="Date"/>
+                <Property Name="name" Type="Edm.String"/>
+                <Property Name="screen_name" Type="Edm.String"/>
+                <Property Name="description" Type="Edm.String"/>
+                <Property Name="followers_count" Type="Edm.Int32"/>
+                <Property Name="statuses_count" Type="Edm.Int32"/>
+                <Property Name="location" Type="Edm.String"/>
+                <NavigationProperty Name="tweets" Relationship="CatalogService.Users_tweets" FromRole="Users" ToRole="Tweets"/>
+            </EntityType>
+            <Association Name="Hashtags_tweet">
+                <End Role="Hashtags" Type="CatalogService.Hashtags" Multiplicity="*"/>
+                <End Role="Tweets" Type="CatalogService.Tweets" Multiplicity="1"/>
+                <ReferentialConstraint>
+                    <Principal Role="Tweets">
+                        <PropertyRef Name="id"/>
+                    </Principal>
+                    <Dependent Role="Hashtags">
+                        <PropertyRef Name="tweet_id"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="Mentions_tweet">
+                <End Role="Mentions" Type="CatalogService.Mentions" Multiplicity="*"/>
+                <End Role="Tweets" Type="CatalogService.Tweets" Multiplicity="1"/>
+                <ReferentialConstraint>
+                    <Principal Role="Tweets">
+                        <PropertyRef Name="id"/>
+                    </Principal>
+                    <Dependent Role="Mentions">
+                        <PropertyRef Name="tweet_id"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="Mentions_mentioned">
+                <End Role="Mentions" Type="CatalogService.Mentions" Multiplicity="*"/>
+                <End Role="Users" Type="CatalogService.Users" Multiplicity="1"/>
+                <ReferentialConstraint>
+                    <Principal Role="Users">
+                        <PropertyRef Name="id"/>
+                    </Principal>
+                    <Dependent Role="Mentions">
+                        <PropertyRef Name="mentioned_user_id"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="Places_tweets">
+                <End Role="Places" Type="CatalogService.Places" Multiplicity="*"/>
+                <End Role="Tweets" Type="CatalogService.Tweets" Multiplicity="*"/>
+            </Association>
+            <Association Name="Tweets_place">
+                <End Role="Tweets" Type="CatalogService.Tweets" Multiplicity="*"/>
+                <End Role="Places" Type="CatalogService.Places" Multiplicity="1"/>
+                <ReferentialConstraint>
+                    <Principal Role="Places">
+                        <PropertyRef Name="id"/>
+                    </Principal>
+                    <Dependent Role="Tweets">
+                        <PropertyRef Name="place_id"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="Tweets_user">
+                <End Role="Tweets" Type="CatalogService.Tweets" Multiplicity="*"/>
+                <End Role="Users" Type="CatalogService.Users" Multiplicity="1"/>
+                <ReferentialConstraint>
+                    <Principal Role="Users">
+                        <PropertyRef Name="id"/>
+                    </Principal>
+                    <Dependent Role="Tweets">
+                        <PropertyRef Name="user_id"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="Tweets_hashtags">
+                <End Role="Tweets" Type="CatalogService.Tweets" Multiplicity="*"/>
+                <End Role="Hashtags" Type="CatalogService.Hashtags" Multiplicity="*"/>
+            </Association>
+            <Association Name="Tweets_mentions">
+                <End Role="Tweets" Type="CatalogService.Tweets" Multiplicity="*"/>
+                <End Role="Mentions" Type="CatalogService.Mentions" Multiplicity="*"/>
+            </Association>
+            <Association Name="Users_tweets">
+                <End Role="Users" Type="CatalogService.Users" Multiplicity="*"/>
+                <End Role="Tweets" Type="CatalogService.Tweets" Multiplicity="*"/>
+            </Association>
+            <Annotations Target="CatalogService.Hashtags/text" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="TEXT"/>
+            </Annotations>
+            <Annotations Target="CatalogService.Hashtags/tweet_id" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="TWEET"/>
+            </Annotations>
+            <Annotations Target="CatalogService.Mentions/mentioned_user_id" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="MENTIONED_USER"/>
+            </Annotations>
+            <Annotations Target="CatalogService.Mentions/tweet_id" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="TWEET"/>
+            </Annotations>
+            <Annotations Target="CatalogService.Places/id" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="PLACE ID"/>
+            </Annotations>
+            <Annotations Target="CatalogService.Places/name" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="PLACE NAME"/>
+            </Annotations>
+            <Annotations Target="CatalogService.Places/full_name" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="FULL NAME"/>
+            </Annotations>
+            <Annotations Target="CatalogService.Places/country" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="COUNTRY"/>
+            </Annotations>
+            <Annotations Target="CatalogService.Places/country_code" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="COUNTRY CODE"/>
+            </Annotations>
+            <Annotations Target="CatalogService.Places/place_type" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="PLACE TYPE"/>
+            </Annotations>
+            <Annotations Target="CatalogService.Tweets" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.Facets">
+                    <Collection>
+                        <Record Type="UI.CollectionFacet">
+                            <PropertyValue Property="Label" String="Tweet Info"/>
+                            <PropertyValue Property="Facets">
+                                <Collection>
+                                    <Record Type="UI.ReferenceFacet">
+                                        <PropertyValue Property="Target" AnnotationPath="@UI.FieldGroup#Main"/>
+                                        <PropertyValue Property="Label" String="Main Facet"/>
+                                    </Record>
+                                </Collection>
+                            </PropertyValue>
+                        </Record>
+                    </Collection>
+                </Annotation>
+                <Annotation Term="UI.FieldGroup" Qualifier="Main">
+                    <Record Type="UI.FieldGroupType">
+                        <PropertyValue Property="Data">
+                            <Collection>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Value" Path="id"/>
+                                </Record>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Value" Path="text"/>
+                                </Record>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Value" Path="user/name"/>
+                                </Record>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Value" Path="place/name"/>
+                                </Record>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Value" Path="created_at"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="UI.HeaderInfo">
+                    <Record Type="UI.HeaderInfoType">
+                        <PropertyValue Property="Description">
+                            <Record Type="UI.DataField">
+                                <PropertyValue Property="Value" Path="text"/>
+                            </Record>
+                        </PropertyValue>
+                        <PropertyValue Property="Title">
+                            <Record Type="UI.DataField">
+                                <PropertyValue Property="Value" Path="id"/>
+                            </Record>
+                        </PropertyValue>
+                        <PropertyValue Property="TypeName" String="Tweet"/>
+                        <PropertyValue Property="TypeNamePlural" String="Tweets"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="UI.LineItem">
+                    <Collection>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="id"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="text"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="user/name"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="place/name"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="created_at"/>
+                        </Record>
+                    </Collection>
+                </Annotation>
+                <Annotation Term="UI.SelectionFields">
+                    <Collection>
+                        <PropertyPath>id</PropertyPath>
+                        <PropertyPath>text</PropertyPath>
+                        <PropertyPath>user/name</PropertyPath>
+                    </Collection>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="CatalogService.Tweets/id" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="TWEET ID"/>
+            </Annotations>
+            <Annotations Target="CatalogService.Tweets/created_at" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="CREATED"/>
+            </Annotations>
+            <Annotations Target="CatalogService.Tweets/text" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="TWEET TEXT"/>
+            </Annotations>
+            <Annotations Target="CatalogService.Tweets/truncated" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="TRUNCATED"/>
+            </Annotations>
+            <Annotations Target="CatalogService.Tweets/place_id" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="PLACE"/>
+            </Annotations>
+            <Annotations Target="CatalogService.Tweets/user_id" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="USER"/>
+            </Annotations>
+            <Annotations Target="CatalogService.Users/id" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="USER ID"/>
+            </Annotations>
+            <Annotations Target="CatalogService.Users/created_at" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="CREATED"/>
+            </Annotations>
+            <Annotations Target="CatalogService.Users/name" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="USERNAME"/>
+            </Annotations>
+            <Annotations Target="CatalogService.Users/screen_name" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="SCREEN_NAME"/>
+            </Annotations>
+            <Annotations Target="CatalogService.Users/description" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="DESCRIPTION"/>
+            </Annotations>
+            <Annotations Target="CatalogService.Users/followers_count" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="FOLLOWERS"/>
+            </Annotations>
+            <Annotations Target="CatalogService.Users/statuses_count" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="STATUSES"/>
+            </Annotations>
+            <Annotations Target="CatalogService.Users/location" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="LOCATION"/>
+            </Annotations>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>
