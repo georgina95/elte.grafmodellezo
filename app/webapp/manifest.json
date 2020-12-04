@@ -1,7 +1,7 @@
 {
     "_version": "1.12.0",
     "sap.app": {
-        "id": "elte_grafmodellezo.app",
+        "id": "eltegrafmodellezo.app",
         "type": "application",
         "i18n": "i18n/i18n.properties",
         "applicationVersion": {
@@ -40,7 +40,7 @@
     "sap.ui5": {
         "flexEnabled": false,
         "rootView": {
-            "viewName": "elte_grafmodellezo.app.view.Main",
+            "viewName": "eltegrafmodellezo.app.view.Main",
             "type": "XML",
             "async": true,
             "id": "Main"
@@ -61,7 +61,7 @@
             "i18n": {
                 "type": "sap.ui.model.resource.ResourceModel",
                 "settings": {
-                    "bundleName": "elte_grafmodellezo.app.i18n.i18n"
+                    "bundleName": "eltegrafmodellezo.app.i18n.i18n"
                 }
             },
             "catalogModel": {
@@ -86,7 +86,7 @@
                 "routerClass": "sap.m.routing.Router",
                 "viewType": "XML",
                 "async": true,
-                "viewPath": "elte_grafmodellezo.app.view",
+                "viewPath": "eltegrafmodellezo.app.view",
                 "controlAggregation": "pages",
                 "controlId": "app",
                 "clearControlAggregation": false

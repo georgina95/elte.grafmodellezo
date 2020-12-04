@@ -1,9 +1,9 @@
 sap.ui.define([
-	"elte_grafmodellezo/app/controller/BaseController"
+	"eltegrafmodellezo/app/controller/BaseController"
 ], function (BaseController) {
 	"use strict";
 
-	return BaseController.extend("elte_grafmodellezo.app.controller.Second", {
+	return BaseController.extend("eltegrafmodellezo.app.controller.Second", {
 
 		onInit: function () {
 			var oModel = new sap.ui.model.json.JSONModel({

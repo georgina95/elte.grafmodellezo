@@ -3,7 +3,7 @@ sap.ui.define([
 ], function (UIComponent) {
 	"use strict";
 
-	return UIComponent.extend("elte_grafmodellezo.app.Component", {
+	return UIComponent.extend("eltegrafmodellezo.app.Component", {
 
 		metadata: {
 			manifest: "json"
