@@ -1,5 +1,5 @@
 {
-  "name": "elte_grafmodellezo",
+  "name": "eltegrafmodellezo",
   "version": "0.0.1",
   "description": "Cloud Application Programming(CAP) with Multitenancy using Service Manger Tenant Data Separation",
   "repository": "<Add your repository here>",
@@ -17,7 +17,7 @@
     "build": "cds build/all --clean",
     "deploy": "cds deploy",
     "start": "cds run",
-    "deploy:cf:trial": "cf deploy mta_archives/elte_grafmodellezo.mtar -e sapcp-cf-trial.mtaext"
+    "deploy:cf:trial": "cf deploy mta_archives/eltegrafmodellezo.mtar -e sapcp-cf-trial.mtaext"
   },
   "cds": {
     "comment": "Anything defined outside of a [profile] will apply to all profiles.",

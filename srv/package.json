@@ -1,5 +1,5 @@
 {
-  "name": "elte_grafmodellezo-srv",
+  "name": "eltegrafmodellezo-srv",
   "description": "Generated from ../package.json, do not change!",
   "version": "1.0.0",
   "engines": {
@@ -61,7 +61,7 @@
   "cds": {
     "mtx": {
       "app": {
-        "urlpart": "-dev-elte_grafmodellezo-app.cfapps.eu10.hana.ondemand.com"
+        "urlpart": "-dev-eltegrafmodellezo-app.cfapps.eu10.hana.ondemand.com"
       },
       "api": {
         "model": true,

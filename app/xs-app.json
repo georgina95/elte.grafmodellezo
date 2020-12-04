@@ -7,20 +7,20 @@
   "routes": [
     {
       "source": "(mtx/v1/provisioning/tenant/)(.*)",
-      "destination": "elte_grafmodellezo_svc_be",
+      "destination": "eltegrafmodellezo_svc_be",
       "httpMethods": ["GET", "PUT", "DELETE"],
       "csrfProtection": true,
       "authenticationType": "none"
     },
     {
       "source": "(srv/)(.*)",
-      "destination": "elte_grafmodellezo_svc_be",
+      "destination": "eltegrafmodellezo_svc_be",
       "csrfProtection": true,
       "authenticationType": "xsuaa"
     },
     {
       "source": "(catalog/)(.*)",
-      "destination": "elte_grafmodellezo_svc_be",
+      "destination": "eltegrafmodellezo_svc_be",
       "csrfProtection": true,
       "authenticationType": "xsuaa"
     },

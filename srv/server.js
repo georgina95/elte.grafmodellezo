@@ -181,7 +181,7 @@ if (!cds_mtx_way) {
 // cp srv/handlers/tenant_index.js srv/node_modules/@sap/cds-mtx/lib/tenant/index.js
 // vi srv/node_modules/@sap/cds-mtx/lib/tenant/index.js
 // vi node_modules/@sap/cds-mtx/lib/tenant/index.js
-// cf push elte_grafmodellezo-srv -p srv -n org-space-elte_grafmodellezo-srv -d cfapps.us10.hana.ondemand.com -k 1024M -m 512M
+// cf push eltegrafmodellezo-srv -p srv -n org-space-eltegrafmodellezo-srv -d cfapps.eu10.hana.ondemand.com -k 1024M -m 512M
 
   // serve application defined services: in combination with a CAP Java server, this won't appear here.
   cds.serve('all').in(app);
