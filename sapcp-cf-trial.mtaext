@@ -1,0 +1,8 @@
+_schema-version: '3.1'
+ID: elte_grafmodellezo.extension
+extends: elte_grafmodellezo
+
+resources:
+  - name: elte_grafmodellezo-hdi
+    parameters:
+      service: hanatrial

@@ -1,14 +1,14 @@
 <mvc:View
-    controllerName="elte.grafmodellezo.app.controller.Main"
+    controllerName="elte_grafmodellezo.app.controller.Main"
     xmlns:mvc="sap.ui.core.mvc"
     displayBlock="true"
-    xmlns="sap.m"
->
+    xmlns="sap.m">
+
 	<Shell id="shell">
 		<App id="app">
 			<pages>
-				<Page id="page" title="{i18n>title}">
-					<content />
+				<Page id="page" title="{i18n>appTitle}">
+                    <Button text="PressMe" press="onPress" />
 				</Page>
 			</pages>
 		</App>

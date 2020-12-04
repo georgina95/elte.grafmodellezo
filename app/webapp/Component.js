@@ -1,11 +1,9 @@
 sap.ui.define([
-	"sap/ui/core/UIComponent",
-	"sap/ui/Device",
-	"elte/grafmodellezo/app/model/models"
-], function (UIComponent, Device, models) {
+	"sap/ui/core/UIComponent"
+], function (UIComponent) {
 	"use strict";
 
-	return UIComponent.extend("elte.grafmodellezo.app.Component", {
+	return UIComponent.extend("elte_grafmodellezo.app.Component", {
 
 		metadata: {
 			manifest: "json"
@@ -17,14 +15,13 @@ sap.ui.define([
 		 * @override
 		 */
 		init: function () {
+			
 			// call the base component's init function
 			UIComponent.prototype.init.apply(this, arguments);
 
 			// enable routing
 			this.getRouter().initialize();
-
-			// set the device model
-			this.setModel(models.createDeviceModel(), "device");
+			
 		}
 	});
 });
