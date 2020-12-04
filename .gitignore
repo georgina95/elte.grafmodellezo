@@ -6,6 +6,7 @@ default-*.json
 gen/
 node_modules/
 target/
+package-lock.json
 
 # Web IDE, App Studio
 .che/
@@ -29,7 +30,6 @@ mta_archives/
 .idea
 
 #Misc
-CF_CREDS.sh
 Makefile*
 .env
 /mta_archives/
