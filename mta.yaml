@@ -55,8 +55,6 @@ modules:
       # cf set-env eltegrafmodellezo-srv CF_API_USER $CF_API_USER
       # cf set-env eltegrafmodellezo-srv CF_API_PW $CF_API_PW
       # cf restage eltegrafmodellezo-srv
-      CF_API_USER: user@domain.com
-      CF_API_PW: password
    parameters:
       memory: 512M
       disk-quota: 1024M
@@ -122,7 +120,7 @@ resources:
       # Re-run the following command after changing any @(requires: []) definitions in srv/*.cds
       # Run this from the root of the project and uncomment the path:
       # cds compile srv/ --to xsuaa,json > cds-security.json
-      #path: ./cds-security.json
+      path: ./cds-security.json
       # The combination of path: and config.scopes: Doesn't seem work.  Use one or the other.
       # cds compile srv/ --to xsuaa,yaml and make sure the config: below matches
       #path: ./cds-security.json
