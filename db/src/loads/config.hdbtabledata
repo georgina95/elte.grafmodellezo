@@ -17,6 +17,6 @@
 			"file_name": "config.csv",
 			"has_header": true
 		},
-		"target_table": "MY_BOOKSHOP_CONFIG"
+		"target_table": "ELTE_GRAFMODELLEZO_CONFIG"
 	}]
 }
