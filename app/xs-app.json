@@ -1,19 +1,34 @@
 {
-  "welcomeFile": "/index.html",
+  "welcomeFile": "index.html",
   "authenticationMethod": "route",
+  "logout": {
+    "logoutEndpoint": "/do/logout"
+  },
   "routes": [
     {
-      "source": "^/v2/(.*)$",
-      "target": "/v2/$1",
-      "destination": "cds_be",
-      "authenticationType": "xsuaa",
-      "csrfProtection": false
+      "source": "(mtx/v1/provisioning/tenant/)(.*)",
+      "destination": "eltegrafmodellezo_svc_be",
+      "httpMethods": ["GET", "PUT", "DELETE"],
+      "csrfProtection": true,
+      "authenticationType": "none"
     },
     {
-      "source": "^(.*)$",
-      "target": "$1",
-      "service": "html5-apps-repo-rt",
+      "source": "(srv/)(.*)",
+      "destination": "eltegrafmodellezo_svc_be",
+      "csrfProtection": true,
+      "authenticationType": "xsuaa"
+    },
+    {
+      "source": "(catalog/)(.*)",
+      "destination": "eltegrafmodellezo_svc_be",
+      "csrfProtection": true,
+      "authenticationType": "xsuaa"
+    },
+    {
+      "localDir": "webapp",
+      "source": "^/(.*)",
       "authenticationType": "none"
     }
   ]
 }
+

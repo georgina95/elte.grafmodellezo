@@ -1,120 +1,210 @@
-_schema-version: "3.1"
-ID: grafmodellezo
-description: A simple CAP project.
-version: 1.0.0
-modules:
-- name: grafmodellezo-srv
-  type: nodejs
-  path: gen/srv
-  requires:
-  - name: grafmodellezo-db
-  provides:
-  - name: srv-api
-    properties:
-      srv-url: ${default-url}
-- name: grafmodellezo-db-deployer
-  type: hdb
-  path: gen/db
-  requires:
-  - name: grafmodellezo-db
-  parameters:
-    buildpack: nodejs_buildpack
-- name: grafmodellezo-router
-  type: approuter.nodejs
-  path: cf/router
-  requires:
-  - name: srv-api
-    group: destinations
-    properties:
-      forwardAuthToken: true
-      name: cds_be
-      url: ~{srv-url}
-  - name: grafmodellezo-html5-repo-runtime
-  - name: grafmodellezo-uaa
-  - name: grafmodellezo-destination
-    group: destinations
-    properties:
-      forwardAuthToken: false
-      name: ui5
-      url: https://ui5.sap.com
-  - name: grafmodellezo-connectivity
-  parameters:
-    disk-quota: 256M
-    memory: 256M
-    routes:
-    - route: https://grafmodellezo-${org}-${space}.${default-domain}
-- name: grafmodellezo-deployer
-  type: com.sap.application.content
-  path: .
-  requires:
-  - name: grafmodellezo-html5-repo-host
-    parameters:
-      content-target: true
-  build-parameters:
-    build-result: resources
-    requires:
-    - artifacts:
-      - eltegrafmodellezoapp.zip
-      name: eltegrafmodellezoapp
-      target-path: resources/
-- name: eltegrafmodellezoapp
-  type: html5
-  path: app
-  requires:
-  - name: srv-api
-    group: destinations
-    properties:
-      forwardAuthToken: true
-      name: cds_be
-      url: ~{srv-url}
-  build-parameters:
-    build-result: dist
-    builder: custom
-    commands:
-    - npm install
-    - npm run build:cf
-    supported-platforms: []
-resources:
-- name: grafmodellezo-db
-  type: com.sap.xs.hdi-container
-  parameters:
-    service: hana
-    service-plan: hdi-shared
-  properties:
-    hdi-service-name: ${service-name}
-- name: grafmodellezo-uaa
-  type: org.cloudfoundry.managed-service
-  parameters:
-    config:
-      tenant-mode: dedicated
-      xsappname: grafmodellezo-${org}
-    service: xsuaa
-    service-plan: application
-- name: grafmodellezo-html5-repo-runtime
-  type: org.cloudfoundry.managed-service
-  parameters:
-    service: html5-apps-repo
-    service-plan: app-runtime
-- name: grafmodellezo-destination
-  type: org.cloudfoundry.managed-service
-  parameters:
-    service: destination
-    service-plan: lite
-- name: grafmodellezo-html5-repo-host
-  type: org.cloudfoundry.managed-service
-  parameters:
-    service: html5-apps-repo
-    service-plan: app-host
-- name: grafmodellezo-connectivity
-  type: org.cloudfoundry.managed-service
-  parameters:
-    service: connectivity
-    service-plan: lite
+## Generated mta.yaml based on yo sap-partner-eng version 0.3.00
+## appName = eltegrafmodellezo
+## language=nodejs; multiTenant=false
+## approuter=eltegrafmodellezo-app
+_schema-version: '3.1'
+ID: eltegrafmodellezo
+version: 0.0.1
+description: Cloud Application Programming(CAP) with Multitenancy using Service Manger Tenant Data Separation
 parameters:
-  enable-parallel-deployments: true
+   enable-parallel-deployments: true
+  
+  
 build-parameters:
   before-all:
-  - builder: custom
-    commands:
-    - npm install --production
-    - npx -p @sap/cds-dk cds build --production
+   - builder: custom
+     commands:
+      - npm install
+      - npx -p @sap/cds-dk cds build
+
+modules:
+
+### New Modules Here ###
+
+# cf push eltegrafmodellezo-hdb -p db -k 512M -m 512M
+ - name: eltegrafmodellezo-hdb
+   type: hdb
+   path: db
+   build-parameters:
+      # Don't package the dependencies if you're running into EINTEGRITY issues
+      ignore: ["default-env.json", "node_modules/"]
+      # Suppress the calling of npm install by listing no commands
+      builder: custom
+      commands: []
+   parameters:
+      memory: 1024M
+      disk-quota: 1024M
+   requires:
+    - name: eltegrafmodellezo-hdi
+
+# cf push eltegrafmodellezo-srv -p srv -n ${org}-${space}-eltegrafmodellezo-srv -d cfapps.eu10.hana.ondemand.com -k 1024M -m 512M
+ - name: eltegrafmodellezo-srv
+   type: nodejs
+   build-parameters:
+      # Don't package the dependencies if you're running into EINTEGRITY issues
+      ignore: ["default-env.json", "node_modules/"]
+      # Suppress the calling of npm install by listing no commands
+      builder: custom
+      commands: []
+   path: srv
+   properties:
+      LOG_LEVEL: debug
+      EXIT: 1  # required by deploy.js task to terminate
+      SAP_JWT_TRUST_ACL: [{"clientid":"*","identityzone":"sap-provisioning"}]  # Trust between server and SaaS Manager
+      NODE_DEBUG: 'instance-manager'
+      # cf set-env eltegrafmodellezo-srv CF_API_USER $CF_API_USER
+      # cf set-env eltegrafmodellezo-srv CF_API_PW $CF_API_PW
+      # cf restage eltegrafmodellezo-srv
+   parameters:
+      memory: 512M
+      disk-quota: 1024M
+      #host: ${org}-${space}-eltegrafmodellezo-srv
+      #domain: cfapps.eu10.hana.ondemand.com
+   provides:
+    - name: eltegrafmodellezo_svc_api
+      properties:
+         url: ${default-url}
+   requires:
+    - name: eltegrafmodellezo-hdi
+    - name: eltegrafmodellezo-uaa
+    - name: eltegrafmodellezo-reg
+    - name: eltegrafmodellezo-smc
+
+
+# cf push eltegrafmodellezo-app -p app -n eltegrafmodellezo-app -d cfapps.eu10.hana.ondemand.com -k 256M -m 256M
+ - name: eltegrafmodellezo-app
+   type: html5
+   path: app
+   build-parameters:
+      # Don't package the dependencies if you're running into EINTEGRITY issues
+      ignore: ["default-env.json", "node_modules/"]
+      # Suppress the calling of npm install by listing no commands
+      builder: custom
+      commands: []
+   parameters:
+      #host: ${org}-${space}-eltegrafmodellezo-app
+      #domain: cfapps.eu10.hana.ondemand.com
+      #routes:
+      #  - route: eltegrafmodellezo-app-${space}-${app-name}.${default-domain}
+      disk-quota: 1024M
+      memory: 1024M
+   provides:
+    - name: Router_api
+      properties:
+         url: ${default-url}
+         application: ${app-name}
+# CDS-MTX
+   properties:
+      TENANT_HOST_PATTERN: '^(.*)-${space}-${app-name}.${default-domain}'
+   requires:
+   # cf bind-service eltegrafmodellezo-app eltegrafmodellezo_UAA
+    - name: eltegrafmodellezo-uaa
+   ### New Destinations Here ###
+    - name: eltegrafmodellezo_svc_api
+      group: destinations
+      properties:
+         name: eltegrafmodellezo_svc_be
+         url: ~{url}
+         forwardAuthToken: true
+
+resources:
+
+# cf create-service xsuaa application eltegrafmodellezo_UAA -c ./cds-security.json
+ - name: eltegrafmodellezo-uaa
+   type: org.cloudfoundry.managed-service
+   requires:
+    - name: Router_api
+   properties:
+      XSAPPNAME: ${xsuaa-app}
+   parameters:
+      # Re-run the following command after changing any @(requires: []) definitions in srv/*.cds
+      # Run this from the root of the project and uncomment the path:
+      # cds compile srv/ --to xsuaa,json > cds-security.json
+      path: ./cds-security.json
+      # The combination of path: and config.scopes: Doesn't seem work.  Use one or the other.
+      # cds compile srv/ --to xsuaa,yaml and make sure the config: below matches
+      #path: ./cds-security.json
+      #path: ./xs-security.json
+      service: xsuaa
+      service-plan: application
+      service-name: ELTEGRAFMODELLEZO_UAA
+      xsuaa-app: ${space}-~{Router_api/application}
+      # Define within config what used to be in the xs-security.json file.  path: now pulls in cds scopes/role templates
+      # Convert with https://www.json2yaml.com/
+      # https://github.wdf.sap.corp/pages/cap/guides/authorization#role-assignments-with-xsuaa
+      config:
+         xsappname: ${xsuaa-app}
+         ### tenant-mode
+         tenant-mode: shared
+         description: Security profile of the eltegrafmodellezo application
+         scopes:
+          - name: "$XSAPPNAME.Callback"
+            description: With this scope set, the callbacks for tenant onboarding, offboarding and getDependencies can be called.
+            grant-as-authority-to-apps: 
+             - "$XSAPPNAME(application,sap-provisioning,tenant-onboarding)"
+          - name: "$XSAPPNAME.Administrator"
+            description: Administrate the application
+          - name: "$XSAPPNAME.User"
+            description: Use the application
+         role-templates:
+          - name: Administrator
+            description: Administrator
+            scope-references:
+             - "$XSAPPNAME.Administrator"
+          - name: User
+            description: User Required
+            scope-references:
+             - "$XSAPPNAME.User"
+         oauth2-configuration:
+            redirect-uris: 
+             - "http*://*.${default-domain}/**"
+
+### New Resources Here ###
+
+# cf create-service hana hdi-shared ELTEGRAFMODELLEZO_HDI -c '{"config":{"schema":""}}'
+ - name: eltegrafmodellezo-hdi
+   type: com.sap.xs.hdi-container
+   parameters:
+      service-name: ELTEGRAFMODELLEZO_HDI
+      config:
+         schema: 
+
+# CAP-MTX Managed HANA (Internal Service Manager)
+ - name: eltegrafmodellezo-smc
+   type: org.cloudfoundry.managed-service
+   requires:
+    - name: eltegrafmodellezo-uaa
+   parameters:
+      service: service-manager
+      service-plan: container
+      service-name: ELTEGRAFMODELLEZO_SMC
+      polling_timeout_seconds: 240
+      config:
+         acquireTimeoutMillis: max
+         polling_timeout_seconds: 480
+
+# Multitenant Registration(using CAP-MTX style url)
+# Manually add route after tenant subscription
+# cf map-route eltegrafmodellezo-app cfapps.eu10.hana.ondemand.com --hostname xxxmtxsmsbi-dev-eltegrafmodellezo-app
+ - name: eltegrafmodellezo-reg
+   type: org.cloudfoundry.managed-service
+   requires:
+    - name: eltegrafmodellezo-uaa
+   parameters:
+      service: saas-registry
+      service-plan: application
+      service-name: ELTEGRAFMODELLEZO_REG
+      config:
+         xsappname: ~{eltegrafmodellezo-uaa/XSAPPNAME}
+         appName: eltegrafmodellezo-${org}-${space}
+         displayName: eltegrafmodellezo-${org}-${space}
+         description: 'eltegrafmodellezo Multitenant App'
+         category: 'eltegrafmodellezo Category'
+         appUrls:
+            onSubscription: https://${org}-${space}-eltegrafmodellezo-srv.${default-domain}/mtx/v1/provisioning/tenant/{tenantId}
+            onSubscriptionAsync: false
+            onUnSubscriptionAsync: false
+            #callbackTimeoutMillis: 300000
+
+
+

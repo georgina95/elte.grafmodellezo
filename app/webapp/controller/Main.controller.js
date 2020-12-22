@@ -1,15 +1,17 @@
 sap.ui.define([
-	"sap/ui/core/mvc/Controller"
-],
-	/**
-	 * @param {typeof sap.ui.core.mvc.Controller} Controller
-	 */
-	function (Controller) {
-		"use strict";
+	"eltegrafmodellezo/app/controller/BaseController"
+], function (BaseController) {
+	"use strict";
 
-		return Controller.extend("elte.grafmodellezo.app.controller.Main", {
-			onInit: function () {
+	return BaseController.extend("eltegrafmodellezo.app.controller.Main", {
 
-			}
-		});
+		onInit: function () {
+			
+        },
+        
+        onPress: function(oEvent) {
+            this.navTo("Second", {}, false);
+        }
 	});
+
+});

@@ -1,4 +1,4 @@
-# CAP grafmodellezo
+# CAP killcds
 _out
 *.db
 connection.properties
@@ -6,6 +6,8 @@ default-*.json
 gen/
 node_modules/
 target/
+package-lock.json
+srv/src/
 
 # Web IDE, App Studio
 .che/
@@ -25,5 +27,26 @@ mta_archives/
 *.flattened-pom.xml
 
 # IDEs
-# .vscode
-# .idea
+.vscode
+.idea
+
+#Misc
+Makefile*
+.env
+/mta_archives/
+fioriHtmlRunner.html
+.*/fioriHtmlRunner.html
+visual_ext_index.html
+/webapp/visual_ext_index.html
+extended_runnable_file.html
+.*/extended_runnable_file.html
+sap-ui-cachebuster-info.json
+mock_preview_sapui5.html
+.*/mock_preview_sapui5.html
+UIAdaptation_index.html
+changes_preview.js
+AppVariant_index.html
+AppVariantPreviewPayload.zip
+mergedManifestDescriptor.json
+APIExternalProducer.js
+.*/APIExternalProducer.js
