@@ -1,7 +1,9 @@
-using { my.bookshop, sap.common } from '../db/data-model';
+using { elte.grafmodellezo } from '../db/data-model';
 
 service CatalogService {
-  entity Books @readonly as projection on bookshop.Books;
-  entity Authors @readonly as projection on bookshop.Authors;
-  entity Orders @insertonly as projection on bookshop.Orders;
+  entity Tweets @readonly as projection on grafmodellezo.Tweets;
+  entity Users @readonly as projection on grafmodellezo.Users;
+  entity Places @readonly as projection on grafmodellezo.Places;
+  entity Hashtags @readonly as projection on grafmodellezo.Hashtags;
+  entity Mentions @readonly as projection on grafmodellezo.Mentions;
 }

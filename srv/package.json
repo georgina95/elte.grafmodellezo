@@ -77,7 +77,8 @@
         "sap."
       ],
       "entity-whitelist": [
-        "my.bookshop.Books"
+        "elte.grafmodellezo.Users",
+        "elte.grafmodellezo.Tweets"
       ],
       "service-whitelist": []
     },
