@@ -29,9 +29,28 @@
           <NavigationPropertyBinding Path="localized" Target="Countries_texts"/>
         </EntitySet>
         <EntitySet Name="Countries_texts" EntityType="CatalogService.Countries_texts"/>
+        <EntitySet Name="Hashtags" EntityType="CatalogService.Hashtags">
+          <NavigationPropertyBinding Path="tweet" Target="Tweets"/>
+        </EntitySet>
+        <EntitySet Name="Mentions" EntityType="CatalogService.Mentions">
+          <NavigationPropertyBinding Path="tweet" Target="Tweets"/>
+          <NavigationPropertyBinding Path="mentioned" Target="Users"/>
+        </EntitySet>
         <EntitySet Name="Orders" EntityType="CatalogService.Orders">
           <NavigationPropertyBinding Path="book" Target="Books"/>
           <NavigationPropertyBinding Path="country" Target="Countries"/>
+        </EntitySet>
+        <EntitySet Name="Places" EntityType="CatalogService.Places">
+          <NavigationPropertyBinding Path="tweets" Target="Tweets"/>
+        </EntitySet>
+        <EntitySet Name="Tweets" EntityType="CatalogService.Tweets">
+          <NavigationPropertyBinding Path="place" Target="Places"/>
+          <NavigationPropertyBinding Path="user" Target="Users"/>
+          <NavigationPropertyBinding Path="hashtags" Target="Hashtags"/>
+          <NavigationPropertyBinding Path="mentions" Target="Mentions"/>
+        </EntitySet>
+        <EntitySet Name="Users" EntityType="CatalogService.Users">
+          <NavigationPropertyBinding Path="tweets" Target="Tweets"/>
         </EntitySet>
       </EntityContainer>
       <EntityType Name="Authors">
@@ -93,6 +112,31 @@
         <Property Name="descr" Type="Edm.String" MaxLength="1000"/>
         <Property Name="code" Type="Edm.String" MaxLength="3" Nullable="false"/>
       </EntityType>
+      <EntityType Name="Hashtags">
+        <Key>
+          <PropertyRef Name="text"/>
+          <PropertyRef Name="tweet_id"/>
+        </Key>
+        <Property Name="text" Type="Edm.String" Nullable="false"/>
+        <Property Name="tweet_id" Type="Edm.Guid" Nullable="false"/>
+        <NavigationProperty Name="tweet" Type="CatalogService.Tweets" Nullable="false">
+          <ReferentialConstraint Property="tweet_id" ReferencedProperty="id"/>
+        </NavigationProperty>
+      </EntityType>
+      <EntityType Name="Mentions">
+        <Key>
+          <PropertyRef Name="mentioned_user_id"/>
+          <PropertyRef Name="tweet_id"/>
+        </Key>
+        <Property Name="mentioned_user_id" Type="Edm.Guid" Nullable="false"/>
+        <Property Name="tweet_id" Type="Edm.Guid" Nullable="false"/>
+        <NavigationProperty Name="tweet" Type="CatalogService.Tweets" Nullable="false">
+          <ReferentialConstraint Property="tweet_id" ReferencedProperty="id"/>
+        </NavigationProperty>
+        <NavigationProperty Name="mentioned" Type="CatalogService.Users" Nullable="false">
+          <ReferentialConstraint Property="mentioned_user_id" ReferencedProperty="id"/>
+        </NavigationProperty>
+      </EntityType>
       <EntityType Name="Orders">
         <Key>
           <PropertyRef Name="ID"/>
@@ -111,6 +155,51 @@
         <Property Name="amount" Type="Edm.Int32"/>
         <Property Name="book_ID" Type="Edm.Int32"/>
         <Property Name="country_code" Type="Edm.String" MaxLength="3"/>
+      </EntityType>
+      <EntityType Name="Places">
+        <Key>
+          <PropertyRef Name="id"/>
+        </Key>
+        <Property Name="id" Type="Edm.Guid" Nullable="false"/>
+        <Property Name="name" Type="Edm.String"/>
+        <Property Name="full_name" Type="Edm.String"/>
+        <Property Name="country" Type="Edm.String"/>
+        <Property Name="country_code" Type="Edm.String"/>
+        <Property Name="place_type" Type="Edm.String"/>
+        <NavigationProperty Name="tweets" Type="Collection(CatalogService.Tweets)"/>
+      </EntityType>
+      <EntityType Name="Tweets">
+        <Key>
+          <PropertyRef Name="id"/>
+        </Key>
+        <Property Name="id" Type="Edm.Guid" Nullable="false"/>
+        <Property Name="created_at" Type="Edm.Date"/>
+        <Property Name="text" Type="Edm.String"/>
+        <Property Name="truncated" Type="Edm.Boolean"/>
+        <Property Name="place_id" Type="Edm.Guid"/>
+        <Property Name="user_id" Type="Edm.Guid"/>
+        <NavigationProperty Name="place" Type="CatalogService.Places" Nullable="false">
+          <ReferentialConstraint Property="place_id" ReferencedProperty="id"/>
+        </NavigationProperty>
+        <NavigationProperty Name="user" Type="CatalogService.Users" Nullable="false">
+          <ReferentialConstraint Property="user_id" ReferencedProperty="id"/>
+        </NavigationProperty>
+        <NavigationProperty Name="hashtags" Type="Collection(CatalogService.Hashtags)"/>
+        <NavigationProperty Name="mentions" Type="Collection(CatalogService.Mentions)"/>
+      </EntityType>
+      <EntityType Name="Users">
+        <Key>
+          <PropertyRef Name="id"/>
+        </Key>
+        <Property Name="id" Type="Edm.Guid" Nullable="false"/>
+        <Property Name="created_at" Type="Edm.Date"/>
+        <Property Name="name" Type="Edm.String"/>
+        <Property Name="screen_name" Type="Edm.String"/>
+        <Property Name="description" Type="Edm.String"/>
+        <Property Name="followers_count" Type="Edm.Int32"/>
+        <Property Name="statuses_count" Type="Edm.Int32"/>
+        <Property Name="location" Type="Edm.String"/>
+        <NavigationProperty Name="tweets" Type="Collection(CatalogService.Tweets)"/>
       </EntityType>
       <Annotations Target="CatalogService.EntityContainer/Authors">
         <Annotation Term="Capabilities.DeleteRestrictions">
@@ -174,6 +263,52 @@
       <Annotations Target="CatalogService.Countries_texts/code">
         <Annotation Term="Common.Label" String="Country Code"/>
         <Annotation Term="Common.Text" Path="name"/>
+      </Annotations>
+      <Annotations Target="CatalogService.EntityContainer/Hashtags">
+        <Annotation Term="Capabilities.DeleteRestrictions">
+          <Record Type="Capabilities.DeleteRestrictionsType">
+            <PropertyValue Property="Deletable" Bool="false"/>
+          </Record>
+        </Annotation>
+        <Annotation Term="Capabilities.InsertRestrictions">
+          <Record Type="Capabilities.InsertRestrictionsType">
+            <PropertyValue Property="Insertable" Bool="false"/>
+          </Record>
+        </Annotation>
+        <Annotation Term="Capabilities.UpdateRestrictions">
+          <Record Type="Capabilities.UpdateRestrictionsType">
+            <PropertyValue Property="Updatable" Bool="false"/>
+          </Record>
+        </Annotation>
+      </Annotations>
+      <Annotations Target="CatalogService.Hashtags/text">
+        <Annotation Term="Common.Label" String="TEXT"/>
+      </Annotations>
+      <Annotations Target="CatalogService.Hashtags/tweet_id">
+        <Annotation Term="Common.Label" String="TWEET"/>
+      </Annotations>
+      <Annotations Target="CatalogService.EntityContainer/Mentions">
+        <Annotation Term="Capabilities.DeleteRestrictions">
+          <Record Type="Capabilities.DeleteRestrictionsType">
+            <PropertyValue Property="Deletable" Bool="false"/>
+          </Record>
+        </Annotation>
+        <Annotation Term="Capabilities.InsertRestrictions">
+          <Record Type="Capabilities.InsertRestrictionsType">
+            <PropertyValue Property="Insertable" Bool="false"/>
+          </Record>
+        </Annotation>
+        <Annotation Term="Capabilities.UpdateRestrictions">
+          <Record Type="Capabilities.UpdateRestrictionsType">
+            <PropertyValue Property="Updatable" Bool="false"/>
+          </Record>
+        </Annotation>
+      </Annotations>
+      <Annotations Target="CatalogService.Mentions/mentioned_user_id">
+        <Annotation Term="Common.Label" String="MENTIONED_USER"/>
+      </Annotations>
+      <Annotations Target="CatalogService.Mentions/tweet_id">
+        <Annotation Term="Common.Label" String="TWEET"/>
       </Annotations>
       <Annotations Target="CatalogService.EntityContainer/Orders">
         <Annotation Term="Capabilities.DeleteRestrictions">
@@ -240,6 +375,117 @@
           </Record>
         </Annotation>
         <Annotation Term="Core.Description" String="A country code as specified in ISO 3166-1"/>
+      </Annotations>
+      <Annotations Target="CatalogService.EntityContainer/Places">
+        <Annotation Term="Capabilities.DeleteRestrictions">
+          <Record Type="Capabilities.DeleteRestrictionsType">
+            <PropertyValue Property="Deletable" Bool="false"/>
+          </Record>
+        </Annotation>
+        <Annotation Term="Capabilities.InsertRestrictions">
+          <Record Type="Capabilities.InsertRestrictionsType">
+            <PropertyValue Property="Insertable" Bool="false"/>
+          </Record>
+        </Annotation>
+        <Annotation Term="Capabilities.UpdateRestrictions">
+          <Record Type="Capabilities.UpdateRestrictionsType">
+            <PropertyValue Property="Updatable" Bool="false"/>
+          </Record>
+        </Annotation>
+      </Annotations>
+      <Annotations Target="CatalogService.Places/id">
+        <Annotation Term="Common.Label" String="PLACE ID"/>
+      </Annotations>
+      <Annotations Target="CatalogService.Places/name">
+        <Annotation Term="Common.Label" String="PLACE NAME"/>
+      </Annotations>
+      <Annotations Target="CatalogService.Places/full_name">
+        <Annotation Term="Common.Label" String="FULL NAME"/>
+      </Annotations>
+      <Annotations Target="CatalogService.Places/country">
+        <Annotation Term="Common.Label" String="COUNTRY"/>
+      </Annotations>
+      <Annotations Target="CatalogService.Places/country_code">
+        <Annotation Term="Common.Label" String="COUNTRY CODE"/>
+      </Annotations>
+      <Annotations Target="CatalogService.Places/place_type">
+        <Annotation Term="Common.Label" String="PLACE TYPE"/>
+      </Annotations>
+      <Annotations Target="CatalogService.EntityContainer/Tweets">
+        <Annotation Term="Capabilities.DeleteRestrictions">
+          <Record Type="Capabilities.DeleteRestrictionsType">
+            <PropertyValue Property="Deletable" Bool="false"/>
+          </Record>
+        </Annotation>
+        <Annotation Term="Capabilities.InsertRestrictions">
+          <Record Type="Capabilities.InsertRestrictionsType">
+            <PropertyValue Property="Insertable" Bool="false"/>
+          </Record>
+        </Annotation>
+        <Annotation Term="Capabilities.UpdateRestrictions">
+          <Record Type="Capabilities.UpdateRestrictionsType">
+            <PropertyValue Property="Updatable" Bool="false"/>
+          </Record>
+        </Annotation>
+      </Annotations>
+      <Annotations Target="CatalogService.Tweets/id">
+        <Annotation Term="Common.Label" String="TWEET ID"/>
+      </Annotations>
+      <Annotations Target="CatalogService.Tweets/created_at">
+        <Annotation Term="Common.Label" String="CREATED"/>
+      </Annotations>
+      <Annotations Target="CatalogService.Tweets/text">
+        <Annotation Term="Common.Label" String="TWEET TEXT"/>
+      </Annotations>
+      <Annotations Target="CatalogService.Tweets/truncated">
+        <Annotation Term="Common.Label" String="TRUNCATED"/>
+      </Annotations>
+      <Annotations Target="CatalogService.Tweets/place_id">
+        <Annotation Term="Common.Label" String="PLACE"/>
+      </Annotations>
+      <Annotations Target="CatalogService.Tweets/user_id">
+        <Annotation Term="Common.Label" String="USER"/>
+      </Annotations>
+      <Annotations Target="CatalogService.EntityContainer/Users">
+        <Annotation Term="Capabilities.DeleteRestrictions">
+          <Record Type="Capabilities.DeleteRestrictionsType">
+            <PropertyValue Property="Deletable" Bool="false"/>
+          </Record>
+        </Annotation>
+        <Annotation Term="Capabilities.InsertRestrictions">
+          <Record Type="Capabilities.InsertRestrictionsType">
+            <PropertyValue Property="Insertable" Bool="false"/>
+          </Record>
+        </Annotation>
+        <Annotation Term="Capabilities.UpdateRestrictions">
+          <Record Type="Capabilities.UpdateRestrictionsType">
+            <PropertyValue Property="Updatable" Bool="false"/>
+          </Record>
+        </Annotation>
+      </Annotations>
+      <Annotations Target="CatalogService.Users/id">
+        <Annotation Term="Common.Label" String="USER ID"/>
+      </Annotations>
+      <Annotations Target="CatalogService.Users/created_at">
+        <Annotation Term="Common.Label" String="CREATED"/>
+      </Annotations>
+      <Annotations Target="CatalogService.Users/name">
+        <Annotation Term="Common.Label" String="USERNAME"/>
+      </Annotations>
+      <Annotations Target="CatalogService.Users/screen_name">
+        <Annotation Term="Common.Label" String="SCREEN_NAME"/>
+      </Annotations>
+      <Annotations Target="CatalogService.Users/description">
+        <Annotation Term="Common.Label" String="DESCRIPTION"/>
+      </Annotations>
+      <Annotations Target="CatalogService.Users/followers_count">
+        <Annotation Term="Common.Label" String="FOLLOWERS"/>
+      </Annotations>
+      <Annotations Target="CatalogService.Users/statuses_count">
+        <Annotation Term="Common.Label" String="STATUSES"/>
+      </Annotations>
+      <Annotations Target="CatalogService.Users/location">
+        <Annotation Term="Common.Label" String="LOCATION"/>
       </Annotations>
     </Schema>
   </edmx:DataServices>

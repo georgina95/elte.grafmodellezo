@@ -4,13 +4,9 @@
     displayBlock="true"
     xmlns="sap.m">
 
-	<Shell id="shell">
+	<Shell id="shell" appWidthLimited="false">
 		<App id="app">
-			<pages>
-				<Page id="page" title="{i18n>appTitle}">
-                    <Button text="PressMe" press="onPress" />
-				</Page>
-			</pages>
+			
 		</App>
 	</Shell>
 </mvc:View>

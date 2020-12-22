@@ -93,34 +93,36 @@
             },
             "routes": [
                 {
-                    "name": "RouteMain",
-                    "pattern": "RouteMain",
+                    "name": "Home",
+                    "pattern": "",
+                    "titleTarget": "",
+                    "greedy": false,
                     "target": [
-                        "TargetMain"
+                        "Home"
                     ]
                 },
                 {
-                    "name": "Second",
-                    "pattern": "Second",
+                    "name": "StaticHome",
+                    "pattern": "stat",
+                    "titleTarget": "",
+                    "greedy": false,
                     "target": [
-                        "Second"
+                        "StaticHome"
                     ]
                 }
             ],
             "targets": {
-                "TargetMain": {
+                "Home": {
                     "viewType": "XML",
-                    "transition": "slide",
-                    "clearControlAggregation": false,
-                    "viewId": "Main",
-                    "viewName": "Main"
+                    "viewName": "Home",
+                    "viewPath": "eltegrafmodellezo.app.view"
                 },
-                "Second": {
+                "StaticHome": {
                     "viewType": "XML",
                     "transition": "slide",
                     "clearControlAggregation": false,
-                    "viewId": "Second",
-                    "viewName": "Second"
+                    "viewName": "Home",
+                    "viewPath": "eltegrafmodellezo.app.view.static"
                 }
             }
         }

@@ -11,12 +11,7 @@ sap.ui.define([
         
         onPress: function(oEvent) {
             this.navTo("Second", {}, false);
-        },
-
-        navTo: function(sRoute, oParams, bReplace) {
-			var oRouter = this.getOwnerComponent().getRouter();
-			oRouter.navTo(sRoute, oParams, bReplace);
-		}
+        }
 	});
 
 });
