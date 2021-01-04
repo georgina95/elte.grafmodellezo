@@ -64,7 +64,7 @@
                     "bundleName": "eltegrafmodellezo.app.i18n.i18n"
                 }
             },
-            "catalogModel": {
+            "CatalogModel": {
                 "dataSource": "CatalogService",
                 "settings": {
                     "synchronizationMode": "None",
@@ -78,6 +78,9 @@
             "css": [
                 {
                     "uri": "css/style.css"
+                },
+                {
+                    "uri": "css/inspector.css"
                 }
             ]
         },
@@ -87,42 +90,194 @@
                 "viewType": "XML",
                 "async": true,
                 "viewPath": "eltegrafmodellezo.app.view",
-                "controlAggregation": "pages",
-                "controlId": "app",
-                "clearControlAggregation": false
+                "controlAggregation": "",
+                "controlId": "layoutMain",
+                "clearControlAggregation": true,
+                "bypassed": {
+					"target": []
+				}
             },
             "routes": [
                 {
                     "name": "Home",
-                    "pattern": "",
-                    "titleTarget": "",
-                    "greedy": false,
+                    "pattern": "home",
                     "target": [
                         "Home"
                     ]
                 },
                 {
                     "name": "StaticHome",
-                    "pattern": "stat",
-                    "titleTarget": "",
-                    "greedy": false,
+                    "pattern": "static",
                     "target": [
                         "StaticHome"
                     ]
+                },
+                {
+                    "name": "DynamicHome",
+                    "pattern": "",
+                    "target": [
+                        "DynamicHome"
+                    ]
+                },
+                {
+                    "name": "dynamic_Graph1",
+                    "pattern": "dynamic/Graph1",
+                    "target": [
+                        "dynamic_Graph1"
+                    ]
+                },
+                {
+                    "name": "dynamic_Graph2",
+                    "pattern": "dynamic/Graph2",
+                    "target": [
+                        "dynamic_Graph2"
+                    ]
+                },
+                {
+                    "name": "dynamic_ManageData",
+                    "pattern": "dynamic/ManageData",
+                    "target": [
+                        "dynamic_ManageData"
+                    ]
+                },
+                {
+                    "name": "dynamic_ProjectDetails",
+                    "pattern": "dynamic/ProjectDetails",
+                    "target": [
+                        "dynamic_ProjectDetails"
+                    ]
+                },
+                {
+                    "name": "dynamic_References",
+                    "pattern": "dynamic/References",
+                    "target": [
+                        "dynamic_References"
+                    ]
+                },
+                {
+                    "name": "dynamic_DetailTweets",
+                    "pattern": "dynamic/DetailTweets/{id}",
+                    "greedy": false,
+					"target": [
+						"dynamic_ManageData",
+						"dynamic_DetailTweets"
+					]
+                },
+                {
+                    "name": "dynamic_DetailUsers",
+                    "pattern": "dynamic/DetailUsers/{id}",
+                    "greedy": false,
+					"target": [
+						"dynamic_ManageData",
+						"dynamic_DetailUsers"
+					]
+                },
+                {
+                    "name": "dynamic_DetailPlaces",
+                    "pattern": "dynamic/DetailPlaces/{id}",
+                    "greedy": false,
+					"target": [
+						"dynamic_ManageData",
+						"dynamic_DetailPlaces"
+					]
+                },
+                {
+                    "name": "dynamic_DetailHashtags",
+                    "pattern": "dynamic/DetailHashtags/{tweet_id},{text}",
+                    "greedy": false,
+					"target": [
+						"dynamic_ManageData",
+						"dynamic_DetailHashtags"
+					]
+                },
+                {
+                    "name": "dynamic_DetailMentions",
+                    "pattern": "dynamic/DetailMentions/{tweet_id},{mentioned_user_id}",
+                    "greedy": false,
+					"target": [
+						"dynamic_ManageData",
+						"dynamic_DetailMentions"
+					]
                 }
             ],
             "targets": {
                 "Home": {
                     "viewType": "XML",
                     "viewName": "Home",
-                    "viewPath": "eltegrafmodellezo.app.view"
+                    "viewPath": "eltegrafmodellezo.app.view",
+                    "controlAggregation": "beginColumnPages"
                 },
                 "StaticHome": {
                     "viewType": "XML",
-                    "transition": "slide",
-                    "clearControlAggregation": false,
                     "viewName": "Home",
-                    "viewPath": "eltegrafmodellezo.app.view.static"
+                    "viewPath": "eltegrafmodellezo.app.view.static",
+                    "controlAggregation": "beginColumnPages"
+                },
+                "DynamicHome": {
+                    "viewType": "XML",
+                    "viewName": "Home",
+                    "viewPath": "eltegrafmodellezo.app.view.dynamic",
+                    "controlAggregation": "beginColumnPages"
+                },
+                "dynamic_Graph1": {
+                    "viewType": "XML",
+                    "viewName": "Graph1",
+                    "viewPath": "eltegrafmodellezo.app.view.dynamic.graphs",
+                    "controlAggregation": "beginColumnPages"
+                },
+                "dynamic_Graph2": {
+                    "viewType": "XML",
+                    "viewName": "Graph2",
+                    "viewPath": "eltegrafmodellezo.app.view.dynamic.graphs",
+                    "controlAggregation": "beginColumnPages"
+                },
+                "dynamic_ManageData": {
+                    "viewType": "XML",
+                    "viewName": "ManageData",
+                    "viewPath": "eltegrafmodellezo.app.view.dynamic.technicalInfo",
+                    "controlAggregation": "beginColumnPages"
+                },
+                "dynamic_ProjectDetails": {
+                    "viewType": "XML",
+                    "viewName": "ProjectDetails",
+                    "viewPath": "eltegrafmodellezo.app.view.dynamic.technicalInfo",
+                    "controlAggregation": "beginColumnPages"
+                },
+                "dynamic_References": {
+                    "viewType": "XML",
+                    "viewName": "References",
+                    "viewPath": "eltegrafmodellezo.app.view.dynamic.technicalInfo",
+                    "controlAggregation": "beginColumnPages"
+                },
+                "dynamic_DetailTweets": {
+                    "viewType": "XML",
+                    "viewName": "DetailTweets",
+                    "viewPath": "eltegrafmodellezo.app.view.dynamic.technicalInfo.objectDetail",
+                    "controlAggregation": "midColumnPages"
+                },
+                "dynamic_DetailUsers": {
+                    "viewType": "XML",
+                    "viewName": "DetailUsers",
+                    "viewPath": "eltegrafmodellezo.app.view.dynamic.technicalInfo.objectDetail",
+                    "controlAggregation": "midColumnPages"
+                },
+                "dynamic_DetailPlaces": {
+                    "viewType": "XML",
+                    "viewName": "DetailPlaces",
+                    "viewPath": "eltegrafmodellezo.app.view.dynamic.technicalInfo.objectDetail",
+                    "controlAggregation": "midColumnPages"
+                },
+                "dynamic_DetailHashtags": {
+                    "viewType": "XML",
+                    "viewName": "DetailHashtags",
+                    "viewPath": "eltegrafmodellezo.app.view.dynamic.technicalInfo.objectDetail",
+                    "controlAggregation": "midColumnPages"
+                },
+                "dynamic_DetailMentions": {
+                    "viewType": "XML",
+                    "viewName": "DetailMentions",
+                    "viewPath": "eltegrafmodellezo.app.view.dynamic.technicalInfo.objectDetail",
+                    "controlAggregation": "midColumnPages"
                 }
             }
         }

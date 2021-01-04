@@ -78,7 +78,10 @@
       ],
       "entity-whitelist": [
         "elte.grafmodellezo.Users",
-        "elte.grafmodellezo.Tweets"
+        "elte.grafmodellezo.Tweets",
+        "elte.grafmodellezo.Hashtags",
+        "elte.grafmodellezo.Mentions",
+        "elte.grafmodellezo.Places"
       ],
       "service-whitelist": []
     },

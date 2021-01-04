@@ -1,0 +1,109 @@
+<mvc:View displayBlock="true" height="100%" xmlns:m="sap.m" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.uxap" xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form" controllerName="eltegrafmodellezo.app.controller.dynamic.technicalInfo.objectDetail.DetailPlaces">
+	<ObjectPageLayout showTitleInHeaderContent="true" alwaysShowContentHeader="false" preserveHeaderStateOnScroll="false"
+		headerContentPinnable="true" isChildPage="true" upperCaseAnchorBar="false">
+		
+		<headerTitle>
+			<ObjectPageDynamicHeaderTitle>
+				<expandedHeading>
+					<m:Title text="{i18n>place} - {CatalogModel>name}" textAlign="Begin" titleStyle="Auto" level="Auto" wrapping="false"/>
+				</expandedHeading>
+				<navigationActions>
+					<m:Button icon="sap-icon://sys-cancel" tooltip="{i18n>cancel}" press="onCloseDetailPage"/>
+				</navigationActions>
+			</ObjectPageDynamicHeaderTitle>
+		</headerTitle>
+		<headerContent>
+			<l:Grid defaultSpan="XL2 L3 M4 S6">
+				<l:VerticalLayout width="100%">
+					<m:Label width="100%" text="{i18n>id}" labelFor="tweetId"/>
+					<m:Text id="tweetId" text="{CatalogModel>id}"/>
+				</l:VerticalLayout>
+				<l:VerticalLayout width="100%">
+					<m:Label width="100%" text="{i18n>name}" labelFor="name"/>
+					<m:Text id="name" text="{CatalogModel>name}"/>
+				</l:VerticalLayout>
+				<l:VerticalLayout width="100%">
+					<m:Label width="100%" text="{i18n>placeType}" labelFor="placeType"/>
+					<m:Text id="placeType" text="{CatalogModel>place_type}"/>
+				</l:VerticalLayout>
+			</l:Grid>
+		</headerContent>
+		<sections>
+			<!-- DETAILS -->
+			<ObjectPageSection title="{i18n>details}" showTitle="true" titleUppercase="false" titleLevel="H6">
+				<subSections>
+					<ObjectPageSubSection>
+						<f:Form editable="false">
+							<f:layout>
+								<f:ResponsiveGridLayout labelSpanXL="6" labelSpanL="6" labelSpanM="6" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0"
+									emptySpanM="0" emptySpanS="0" columnsXL="2" columnsL="2" columnsM="2" singleContainerFullSize="false"/>
+							</f:layout>
+							<f:formContainers>
+								<f:FormContainer title="{i18n>placeDetails}">
+									<f:formElements>
+										<f:FormElement label="{i18n>fullName}">
+											<f:fields>
+												<m:Text text="{CatalogModel>full_name}"/>
+											</f:fields>
+										</f:FormElement>
+										<f:FormElement label="{i18n>name}">
+											<f:fields>
+												<m:Text text="{CatalogModel>name}"/>
+											</f:fields>
+										</f:FormElement>
+										<f:FormElement label="{i18n>id}">
+											<f:fields>
+												<m:Text text="{CatalogModel>id}"/>
+											</f:fields>
+										</f:FormElement>
+									</f:formElements>
+								</f:FormContainer>
+								<f:FormContainer title="{i18n>location}">
+									<f:formElements>
+										<f:FormElement label="{i18n>country}">
+											<f:fields>
+												<m:Text text="{CatalogModel>country} ({CatalogModel>country_code})"/>
+											</f:fields>
+										</f:FormElement>
+										<f:FormElement label="{i18n>placeType}">
+											<f:fields>
+												<m:Text text="{CatalogModel>place_type}"/>
+											</f:fields>
+										</f:FormElement>
+									</f:formElements>
+								</f:FormContainer>
+							</f:formContainers>
+						</f:Form>
+					</ObjectPageSubSection>
+				</subSections>
+			</ObjectPageSection>
+			
+			<!-- TWEETS -->
+			<ObjectPageSection title="{i18n>tweets}" showTitle="true" titleUppercase="false" titleLevel="H6">
+				<subSections>
+					<ObjectPageSubSection>
+						<m:Table items="{CatalogModel>tweets}" >
+							<m:columns>
+								<m:Column width="100%">
+									<m:Label text="{i18n>createdAt}" />
+								</m:Column>
+								<m:Column width="100%">
+									<m:Label text="{i18n>text}" />
+								</m:Column>
+							</m:columns>
+							<m:items>
+								<m:ColumnListItem >
+									<m:cells>
+										<m:Text text="{CatalogModel>created_at}" />
+										<m:Text text="{CatalogModel>text}" />
+									</m:cells>
+								</m:ColumnListItem>
+							</m:items>
+						</m:Table>
+					</ObjectPageSubSection>
+				</subSections>
+			</ObjectPageSection>
+		</sections>
+	</ObjectPageLayout>
+</mvc:View>

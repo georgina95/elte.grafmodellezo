@@ -1,4 +1,53 @@
 id;name;full_name;country;country_code;place_type
-b85ae9c0-2742-11eb-adc1-0242ac120002;Place01;German place;Germany;DE;country
-b85aef06-2742-11eb-adc1-0242ac120002;Place02;Los Angeles;United States;US;city
-b85af168-2742-11eb-adc1-0242ac120002;Place03;Manchester;United Kingdom;UK;city
+433e837997c2d4b7;Wakefield;Wakefield, England;United Kingdom;GB;city
+0bdcca7f6f1a86c6;Medicine Hat;Medicine Hat, Alberta;Canada;CA;city
+36775d842cbec509;Montréal;Montréal, Québec;Canada;CA;city
+2526edd24c06e60c;Missouri;Missouri, USA;United States;US;admin
+00817d75276a95cf;Lagos;Lagos, Nigeria;Nigeria;NG;city
+27c45d804c777999;Kansas;Kansas, USA;United States;US;admin
+208d28e57bdc12e9;Wales;Wales, United Kingdom;United Kingdom;GB;admin
+3b77caf94bfc81fe;Los Angeles;Los Angeles, CA;United States;US;city
+01eddd9d0dbec2c8;Ikeja;Ikeja, Nigeria;Nigeria;NG;city
+01a4a1e153e55b20;Tema;Tema, Ghana;Ghana;GH;city
+5f55bb82cf16ac81;Bengaluru South;Bengaluru South, India;भारत;IN;city
+cc95b56a28712044;Centurion;Centurion, South Africa;South Africa;ZA;city
+01f9c9fd7bb1aa6b;Athens;Athens, GA;United States;US;city
+7b02fbddf4d9f2c6;Bandar Kuala Lumpur;Bandar Kuala Lumpur, Wilayah Persekutuan Kuala Lumpur;Malaysia;MY;city
+810e12ec4af983de;Bloemfontein;Bloemfontein, South Africa;South Africa;ZA;city
+00c88afd0cca50a1;Kitale;Kitale, Kenya;Kenya;KE;city
+e564d30dc173d2a8;Johannesburg;Johannesburg, South Africa;South Africa;ZA;city
+2f843bbfaebff6ef;Birkenhead;Birkenhead, England;United Kingdom;GB;city
+6e315e1f96e0450a;Arlington;Arlington, TX;United States;US;city
+7e0111b60fa1d2ed;Graz;Graz, Österreich;Österreich;AT;city
+5d838f7a011f4a2d;London;London, England;United Kingdom;GB;admin
+1694c88492ed8ba0;Seaford;Seaford, England;United Kingdom;GB;city
+607358f5dbace76a;Yuma;Yuma, AZ;United States;US;city
+14b33345c1a559d7;Thabamoopo;Thabamoopo, South Africa;South Africa;ZA;city
+1d982263cb72d996;Curug;Curug, Indonesia;Indonesia;ID;city
+0065f09a6666479e;Ibadan;Ibadan, Nigeria;Nigeria;NG;city
+0af014accd6f6e99;Scotland;Scotland, United Kingdom;United Kingdom;GB;admin
+63d86c7f890fd0a9;Jammu;Jammu, Jammu And Kashmir, India;भारत;IN;city
+01864a8a64df9dc4;Melbourne;Melbourne, Victoria;Australia;AU;city
+3797791ff9c0e4c6;Toronto;Toronto, Ontario;Canada;CA;city
+0e428116fe291283;Port Elizabeth;Port Elizabeth, South Africa;South Africa;ZA;city
+00d58bbe24ee6718;Gaziantep;Gaziantep, Türkiye;Türkiye;TR;city
+50f2d0272381533f;East Midlands;East Midlands, England;United Kingdom;GB;admin
+175ac8b36fb626a2;मोहाली;मोहाली, भारत;भारत;IN;city
+5bcd72da50f0ee77;Hamburg;Hamburg, Deutschland;Deutschland;DE;city
+2b454edc82f17a78;Hamilton;Hamilton, Scotland;United Kingdom;GB;city
+06ef846bfc783874;日本;日本;日本;JP;country
+720203917834b5e6;New Glasgow;New Glasgow, Nova Scotia;Canada;CA;city
+4ec01c9dbc693497;Florida;Florida, USA;United States;US;admin
+6057f1e35bcc6c20;South Carolina;South Carolina, USA;United States;US;admin
+173c2bb9d42baaa5;Sri Lanka;Sri Lanka;Sri Lanka;LK;country
+01e215db7136a37e;Nairobi;Nairobi, Kenya;Kenya;KE;city
+011a05612b6a331c;Lungsod ng Pasig;Lungsod ng Pasig, Pambansang Punong Rehiyon;Republika ng Pilipinas;PH;city
+07d9cd6afd884001;Twitter HQ;Twitter HQ;United States;US;poi
+56c45474148ca4da;Paddington;Paddington, London;United Kingdom;GB;city
+0a0de7bd49ef942d;Scottsdale;Scottsdale, AZ;United States;US;city
+607d3d4010541143;Mashishing;Mashishing, South Africa;South Africa;ZA;city
+7422b4cf3a141703;Diyarbakır;Diyarbakır, Türkiye;Türkiye;TR;city
+789617d5021ec20c;गोवा;गोवा, भारत;भारत;IN;admin
+005f11de9931c8a4;Massillon;Massillon, OH;United States;US;city
+01cc83b303f0c068;Newcastle;Newcastle, New South Wales;Australia;AU;city
+1b378c705e109212;साणंद औद्योगिक क्षेत्र;साणंद औद्योगिक क्षेत्र, भारत;भारत;IN;city

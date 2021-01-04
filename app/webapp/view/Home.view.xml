@@ -10,16 +10,16 @@
     		justifyContent="Center" alignItems="Center">
         <items>
             <GenericTile class="sapUiMediumMarginEnd" 
-            	header="{i18n>StaticMode}" subheader="SUBHEADER" 
+            	header="{i18n>StaticMode}" subheader="" 
             	press="onPressTile" app:targetRoute="StaticHome">
-                <TileContent unit="UNIT" footer="FOOTER">
+                <TileContent unit="" footer="">
                     <ImageContent src="sap-icon://disconnected"/>
                 </TileContent>
             </GenericTile>
             <GenericTile class="sapUiMediumMarginEnd" 
-            	header="{i18n>NormalMode}" subheader="SUBHEADER" 
-            	press="onPressTile" app:targetRoute="NormalHome">
-            	<TileContent unit="UNIT" footer="FOOTER">
+            	header="{i18n>NormalMode}" subheader="" 
+            	press="onPressTile" app:targetRoute="DynamicHome">
+            	<TileContent unit="" footer="">
                     <ImageContent src="sap-icon://connected"/>
                 </TileContent>
             </GenericTile>

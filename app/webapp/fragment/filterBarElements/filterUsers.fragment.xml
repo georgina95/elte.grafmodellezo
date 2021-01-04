@@ -1,0 +1,62 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core" xmlns:fb="sap.ui.comp.filterbar"
+	xmlns:custom="elte.Grafmodellezo.control">
+	<!-- USERS -->
+	<fb:FilterGroupItem groupName="users" groupTitle="{i18n>users}" name="created_at" label="{i18n>createdAt}" labelTooltip=""
+		visibleInFilterBar="true" visible="{= %{Settings>/ManageData/currentType} === 'users'}">
+		<fb:control>
+			<DateRangeSelection 
+				dateValue="{path: 'Settings>/ManageData/filters/users/created_at/key1'}"
+				secondDateValue="{path: 'Settings>/ManageData/filters/users/created_at/key2'}" />
+		</fb:control>
+	</fb:FilterGroupItem>
+	<fb:FilterGroupItem groupName="users" groupTitle="{i18n>users}" name="id" label="{i18n>id}" labelTooltip="" visibleInFilterBar="true"
+		visible="{= %{Settings>/ManageData/currentType} === 'users'}">
+		<fb:control>
+			<Input type="Text" value="{Settings>/ManageData/filters/users/id/key1}" />
+		</fb:control>
+	</fb:FilterGroupItem>
+	<fb:FilterGroupItem groupName="users" groupTitle="{i18n>users}" name="description" label="{i18n>description}" labelTooltip=""
+		visibleInFilterBar="true" visible="{= %{Settings>/ManageData/currentType} === 'users'}">
+		<fb:control>
+			<Input type="Text" value="{Settings>/ManageData/filters/users/description/key1}" />
+		</fb:control>
+	</fb:FilterGroupItem>
+	<fb:FilterGroupItem groupName="users" groupTitle="{i18n>users}" name="followers_count" label="{i18n>followersCount}" labelTooltip=""
+		visibleInFilterBar="true" visible="{= %{Settings>/ManageData/currentType} === 'users'}">
+		<fb:control>
+			<RangeSlider showAdvancedTooltip="true" enableTickmarks="true" showHandleTooltip="false" inputsAsTooltips="true"
+				value="{Settings>/ManageData/filters/users/followers_count/key1}" value2="{Settings>/ManageData/filters/users/followers_count/key2}"
+				min="0" max="{Settings>/ManageData/maxFollowers}">
+				<ResponsiveScale/>
+			</RangeSlider>
+		</fb:control>
+	</fb:FilterGroupItem>
+	<fb:FilterGroupItem groupName="users" groupTitle="{i18n>users}" name="location" label="{i18n>location}" labelTooltip=""
+		visibleInFilterBar="true" visible="{= %{Settings>/ManageData/currentType} === 'users'}">
+		<fb:control>
+			<Input type="Text" value="{Settings>/ManageData/filters/users/location/key1}" />
+		</fb:control>
+	</fb:FilterGroupItem>
+	<fb:FilterGroupItem groupName="users" groupTitle="{i18n>users}" name="name" label="{i18n>name}" labelTooltip="" visibleInFilterBar="true"
+		visible="{= %{Settings>/ManageData/currentType} === 'users'}">
+		<fb:control>
+			<Input type="Text" value="{Settings>/ManageData/filters/users/name/key1}" />
+		</fb:control>
+	</fb:FilterGroupItem>
+	<fb:FilterGroupItem groupName="users" groupTitle="{i18n>users}" name="screen_name" label="{i18n>screenName}" labelTooltip=""
+		visibleInFilterBar="true" visible="{= %{Settings>/ManageData/currentType} === 'users'}">
+		<fb:control>
+			<Input type="Text" value="{Settings>/ManageData/filters/users/screen_name/key1}" />
+		</fb:control>
+	</fb:FilterGroupItem>
+	<fb:FilterGroupItem groupName="users" groupTitle="{i18n>users}" name="statuses_count" label="{i18n>statusesCount}" labelTooltip=""
+		visibleInFilterBar="true" visible="{= %{Settings>/ManageData/currentType} === 'users'}">
+		<fb:control>
+			<RangeSlider showAdvancedTooltip="true" enableTickmarks="true" showHandleTooltip="false" inputsAsTooltips="true"
+				value="{Settings>/ManageData/filters/users/statuses_count/key1}" value2="{Settings>/ManageData/filters/users/statuses_count/key2}"
+				min="0" max="{Settings>/ManageData/maxStatuses}" >
+				<ResponsiveScale/>
+			</RangeSlider>
+		</fb:control>
+	</fb:FilterGroupItem>
+</core:FragmentDefinition>

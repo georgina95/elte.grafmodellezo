@@ -1,0 +1,30 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core" xmlns:fb="sap.ui.comp.filterbar"
+	xmlns:custom="elte.Grafmodellezo.control">
+	<!-- HASHTAGS -->
+	<fb:FilterGroupItem groupName="hashtags" groupTitle="{i18n>hashtags}" name="created_at" label="{i18n>createdAt}" labelTooltip=""
+		visibleInFilterBar="true" visible="{= %{Settings>/ManageData/currentType} === 'hashtags'}">
+		<fb:control>
+			<DateRangeSelection 
+				dateValue="{path: 'Settings>/ManageData/filters/hashtags/created_at/key1'}"
+				secondDateValue="{path: 'Settings>/ManageData/filters/hashtags/created_at/key2'}" />
+		</fb:control>
+	</fb:FilterGroupItem>
+	<fb:FilterGroupItem groupName="hashtags" groupTitle="{i18n>hashtags}" name="user_id" label="{i18n>creator}" labelTooltip="" visibleInFilterBar="true"
+		visible="{= %{Settings>/ManageData/currentType} === 'hashtags'}">
+		<fb:control>
+			<HBox width="100%">
+				<Input id="inputHashtagUser" textFormatMode="KeyValue" 
+					value="{Settings>/ManageData/filters/hashtags/user_id/value1}" selectedKey="{Settings>/ManageData/filters/hashtags/user_id/key1}" 
+					valueHelpOnly="true" showValueHelp="true" valueHelpRequest="onValueHelpUser" />
+				<Button icon="sap-icon://sys-cancel" type="Ghost" press="onClearInput"
+					ariaDescribedBy="inputHashtagUser" enabled="{= %{Settings>/ManageData/filters/hashtags/user_id/key1} !== '' }" />
+			</HBox>
+		</fb:control>
+	</fb:FilterGroupItem>
+	<fb:FilterGroupItem groupName="hashtags" groupTitle="{i18n>hashtags}" name="text" label="{i18n>text}" labelTooltip=""
+		visibleInFilterBar="true" visible="{= %{Settings>/ManageData/currentType} === 'hashtags'}">
+		<fb:control>
+			<Input type="Text" value="{Settings>/ManageData/filters/hashtags/text/key1}" />
+		</fb:control>
+	</fb:FilterGroupItem>
+</core:FragmentDefinition>

@@ -1,0 +1,10 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" 
+    controllerName="eltegrafmodellezo.app.controller.dynamic.graphs.Graph2"
+	xmlns:html="http://www.w3.org/1999/xhtml">
+	<Page title="Title" showHeader="false" showFooter="false" showNavButton="false" >
+		<content>
+			<core:HTML content='&lt;div id=&quot;graphcontainer2&quot;&gt; &lt;/div&gt;' afterRendering="">
+			</core:HTML>
+		</content>
+	</Page>
+</mvc:View>

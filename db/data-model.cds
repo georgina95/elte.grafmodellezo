@@ -6,13 +6,13 @@ entity config {
 }
 
 entity Tweets {
-    key id          : UUID          @title : 'TWEET ID';
+    key id          : String          @title : 'TWEET ID';
         created_at  : Date          @title : 'CREATED';
         text        : String        @title : 'TWEET TEXT';
         sensitive   : Boolean       @title : 'SENSITIVE';
 
-        place_id    : UUID          @title : 'PLACE';
-        user_id     : UUID          @title : 'USER';
+        place_id    : String          @title : 'PLACE';
+        user_id     : String          @title : 'USER';
 
         place : Association[1..1] to Places on place.id = place_id;
         user : Association[1..1] to Users on user.id = user_id;
@@ -21,7 +21,7 @@ entity Tweets {
 }
 
 entity Users {
-    key id          : UUID          @title : 'USER ID';
+    key id          : String          @title : 'USER ID';
         created_at  : Date          @title : 'CREATED';
         name        : String        @title : 'USERNAME';
         screen_name : String        @title : 'SCREEN_NAME';
@@ -34,7 +34,7 @@ entity Users {
 }
 
 entity Places {
-    key id          : UUID          @title : 'PLACE ID';
+    key id          : String          @title : 'PLACE ID';
         name        : String        @title : 'PLACE NAME';
         full_name   : String        @title : 'FULL NAME';
         country     : String        @title : 'COUNTRY';
@@ -46,14 +46,14 @@ entity Places {
 
 entity Hashtags {
     key text        : String        @title : 'TEXT';
-    key tweet_id    : UUID          @title : 'TWEET';
+    key tweet_id    : String          @title : 'TWEET';
 
     tweet : Association[1..1] to Tweets on tweet.id = tweet_id;
 }
 
 entity Mentions {
-    key mentioned_user_id   : UUID          @title : 'MENTIONED_USER';
-    key tweet_id            : UUID          @title : 'TWEET';
+    key mentioned_user_id   : String          @title : 'MENTIONED_USER';
+    key tweet_id            : String          @title : 'TWEET';
 
     tweet : Association[1..1] to Tweets on tweet.id = tweet_id;
     mentioned: Association[1..1] to Users on mentioned.id = mentioned_user_id;

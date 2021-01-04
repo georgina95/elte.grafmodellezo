@@ -1,0 +1,25 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<SelectDialog
+		id="ValueHelpCountries"
+		title="{i18n>selection}"
+		
+        search="onSearchValueHelpCountries"
+		confirm="onConfirmValueHelpCountries"
+		cancel="onCancelValueHelp"
+		
+        multiSelect="false"
+		rememberSelections="true"
+		showClearButton="false"
+        
+        items="{CatalogModel>/countries}">
+        <items>
+            <ObjectListItem
+				intro="{CatalogModel>country_code}"
+				title="{ path: 'CatalogModel>country', formatter: '.getShortString' }"
+				type="Active">
+			</ObjectListItem>
+        </items>
+	</SelectDialog>
+</core:FragmentDefinition>

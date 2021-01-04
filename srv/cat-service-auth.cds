@@ -6,8 +6,24 @@ using { CatalogService } from './cat-service';
 
 annotate CatalogService with @(requires: ['system-user','Admin','User']);
 
-//annotate CatalogService.Orders with @(restrict: [
-//  { grant: ['READ','WRITE'], to: 'Admin' }, 
-//  { grant: ['READ'], to: 'User' }
-//]);
+annotate CatalogService.Tweets with @(restrict: [
+  { grant: ['READ','DELETE'], to: 'Admin' }, 
+  { grant: ['READ'], to: 'User' }
+]);
+annotate CatalogService.Users with @(restrict: [
+  { grant: ['READ','DELETE'], to: 'Admin' }, 
+  { grant: ['READ'], to: 'User' }
+]);
+annotate CatalogService.Places with @(restrict: [
+  { grant: ['READ','DELETE'], to: 'Admin' }, 
+  { grant: ['READ'], to: 'User' }
+]);
+annotate CatalogService.Hashtags with @(restrict: [
+  { grant: ['READ','DELETE'], to: 'Admin' }, 
+  { grant: ['READ'], to: 'User' }
+]);
+annotate CatalogService.Mentions with @(restrict: [
+  { grant: ['READ','DELETE'], to: 'Admin' }, 
+  { grant: ['READ'], to: 'User' }
+]);
 

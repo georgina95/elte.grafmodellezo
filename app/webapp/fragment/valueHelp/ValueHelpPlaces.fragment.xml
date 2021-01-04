@@ -1,0 +1,29 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<SelectDialog
+		id="ValueHelpPlaces"
+		title="{i18n>selection}"
+		
+        search="onSearchValueHelpPlaces"
+		confirm="onConfirmValueHelpPlaces"
+		cancel="onCancelValueHelp"
+		
+        multiSelect="false"
+		rememberSelections="true"
+		showClearButton="false"
+        
+        items="{CatalogModel>/Places}">
+        <items>
+            <ObjectListItem
+				intro="{CatalogModel>id}"
+				title="{ path: 'CatalogModel>full_name', formatter: '.getShortString' }"
+				type="Active">
+				<firstStatus>
+					<ObjectStatus title="{i18n>placeType}" text="{CatalogModel>place_type}" />
+				</firstStatus>
+				<ObjectAttribute title="{i18n>country}" text="{CatalogModel>country}"/>
+			</ObjectListItem>
+        </items>
+	</SelectDialog>
+</core:FragmentDefinition>

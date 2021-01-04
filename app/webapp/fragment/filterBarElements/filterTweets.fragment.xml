@@ -1,0 +1,62 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core" xmlns:fb="sap.ui.comp.filterbar" xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+	<!-- TWEET -->
+	<fb:FilterGroupItem groupName="tweets" groupTitle="{i18n>tweets}" name="created_at" label="{i18n>createdAt}" labelTooltip=""
+		visibleInFilterBar="true" visible="{= %{Settings>/ManageData/currentType} === 'tweets'}">
+		<fb:control>
+			<DateRangeSelection 
+				dateValue="{path: 'Settings>/ManageData/filters/tweets/created_at/key1'}"
+				secondDateValue="{path: 'Settings>/ManageData/filters/tweets/created_at/key2'}" />
+		</fb:control>
+	</fb:FilterGroupItem>
+	<fb:FilterGroupItem groupName="tweets" groupTitle="{i18n>tweets}" name="id" label="{i18n>id}" labelTooltip="" visibleInFilterBar="true"
+		visible="{= %{Settings>/ManageData/currentType} === 'tweets'}">
+		<fb:control>
+			<Input type="Text" value="{Settings>/ManageData/filters/tweets/id/key1}" />
+		</fb:control>
+	</fb:FilterGroupItem>
+	<fb:FilterGroupItem groupName="tweets" groupTitle="{i18n>tweets}" name="place_id" label="{i18n>place}" labelTooltip="" visibleInFilterBar="true"
+		visible="{= %{Settings>/ManageData/currentType} === 'tweets'}">
+		<fb:control>
+			<HBox width="100%">
+				<Input id="inputTweetPlace" textFormatMode="KeyValue" 
+					value="{Settings>/ManageData/filters/tweets/place_id/value1}" selectedKey="{Settings>/ManageData/filters/tweets/place_id/key1}" 
+					valueHelpOnly="true" showValueHelp="true" valueHelpRequest="onValueHelpPlace" />
+				<Button icon="sap-icon://sys-cancel" type="Ghost" press="onClearInput"
+					ariaDescribedBy="inputTweetPlace" enabled="{= %{Settings>/ManageData/filters/tweets/place_id/key1} !== '' }" />
+			</HBox>
+		</fb:control>
+	</fb:FilterGroupItem>
+	<fb:FilterGroupItem groupName="tweets" groupTitle="{i18n>tweets}" name="text" label="{i18n>text}" labelTooltip="" visibleInFilterBar="true"
+		visible="{= %{Settings>/ManageData/currentType} === 'tweets'}">
+		<fb:control>
+			<Input type="Text" value="{Settings>/ManageData/filters/tweets/text/key1}" />
+		</fb:control>
+	</fb:FilterGroupItem>
+    <!-->
+	<fb:FilterGroupItem groupName="tweets" groupTitle="{i18n>tweets}" name="truncated" label="{i18n>sensitive}" labelTooltip=""
+		visibleInFilterBar="true" visible="{= %{Settings>/ManageData/currentType} === 'tweets'}">
+		<fb:control>
+			<custom:CustomSegmentedButton id="tweetTruncatedSegmentedButton" 
+				selectedArbitraryKey="{Settings>/ManageData/filters/tweets/truncated/key1}" selectedKey="{Settings>/ManageData/filters/tweets/truncated/value1}">
+				<custom:items>
+					<SegmentedButtonItem icon="sap-icon://accept" key="True" app:key="True" />
+					<SegmentedButtonItem icon="sap-icon://decline" key="False" app:key="False" />
+					<SegmentedButtonItem icon="sap-icon://circle-task-2" key="None" app:key="" />
+				</custom:items>
+			</custom:CustomSegmentedButton>
+		</fb:control>
+	</fb:FilterGroupItem>
+    <-->
+	<fb:FilterGroupItem groupName="tweets" groupTitle="{i18n>tweets}" name="user_id" label="{i18n>creator}" labelTooltip=""
+		visibleInFilterBar="true" visible="{= %{Settings>/ManageData/currentType} === 'tweets'}">
+		<fb:control>
+			<HBox width="100%">
+				<Input id="inputTweetCreator" textFormatMode="KeyValue" 
+					value="{Settings>/ManageData/filters/tweets/user_id/value1}" selectedKey="{Settings>/ManageData/filters/tweets/user_id/key1}" 
+					valueHelpOnly="true" showValueHelp="true" valueHelpRequest="onValueHelpUser" />
+				<Button icon="sap-icon://sys-cancel" type="Ghost" press="onClearInput"
+					ariaDescribedBy="inputTweetCreator" enabled="{= %{Settings>/ManageData/filters/tweets/user_id/key1} !== '' }" />
+			</HBox>
+		</fb:control>
+	</fb:FilterGroupItem>
+</core:FragmentDefinition>

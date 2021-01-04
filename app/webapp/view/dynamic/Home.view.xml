@@ -1,0 +1,38 @@
+<mvc:View
+    controllerName="eltegrafmodellezo.app.controller.dynamic.Home"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:core="sap.ui.core"
+    displayBlock="true"
+    xmlns="sap.m"
+    xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+	<Page showHeader="false" showFooter="false" showSubHeader="false"  class="sapUiContentPadding" backgroundDesign="Transparent">
+        <content>
+            <VBox visible="{path: 'Settings>/isLogin', formatter: '.negate'}">
+                <Link href="https://110a7190trial-dev-eltegrafmodellezo-app.cfapps.eu10.hana.ondemand.com/catalog/$metadata"
+                    target="_self"
+                    press="onPressLogin"
+                    text="{i18n>logInMessage}" />
+            </VBox>
+            <VBox visible="{Settings>/isLogin}"
+            items="{ path: 'Settings>/homeTiles', templateShareable: 'false'}" width="100%" class="sapUiTinyMarginTop">
+				<items>
+					<VBox width="100%" class="sapUiMediumMarginBottom">
+						<Title text="{path: 'Settings>groupTitle', formatter: '.getTranslation'}"/>
+						<HBox items="{ path: 'Settings>tiles', templateShareable: 'false'}" width="100%">
+							<items>
+								<GenericTile class="sapUiMediumMarginEnd" 
+                                    header="{path: 'Settings>header', formatter: '.getTranslation'}" 
+                                    subheader="{Settings>subheader}" 
+                                    press="onPressTile" app:targetRoute="{Settings>route}">
+									<TileContent unit="{Settings>unit}" footer="{Settings>footer}">
+										<ImageContent src="{Settings>image}"/>
+									</TileContent>
+								</GenericTile>
+							</items>
+						</HBox>
+					</VBox>
+				</items>
+			</VBox>
+		</content>
+	</Page>
+</mvc:View>

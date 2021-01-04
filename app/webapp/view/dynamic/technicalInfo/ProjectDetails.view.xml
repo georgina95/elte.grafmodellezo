@@ -1,0 +1,39 @@
+<mvc:View displayBlock="true" height="100%" xmlns:m="sap.m" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.uxap" xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form" controllerName="eltegrafmodellezo.app.controller.dynamic.technicalInfo.ProjectDetails">
+    
+    <ObjectPageLayout showTitleInHeaderContent="true" alwaysShowContentHeader="false" preserveHeaderStateOnScroll="false"
+        headerContentPinnable="true" isChildPage="true" upperCaseAnchorBar="false" backgroundDesign="Transparent"
+        sections="{Settings>/ProjectDetails/sections}">
+		<headerTitle>
+			<ObjectPageDynamicHeaderTitle>
+				<expandedHeading>
+					<m:Title text="{path: 'Settings>/ProjectDetails/title', formatter: '.getTranslation'}" 
+                        textAlign="Begin" titleStyle="Auto" level="Auto" wrapping="false"/>
+				</expandedHeading>
+			</ObjectPageDynamicHeaderTitle>
+		</headerTitle>
+		<headerContent>
+			<l:Grid defaultSpan="XL2 L3 M4 S6" content="{Settings>/ProjectDetails/infos}">
+				<l:VerticalLayout width="100%">
+					<m:Label width="100%" text="{path: 'Settings>label', formatter: '.getTranslation'}" />
+					<m:Text text="{Settings>value}"/>
+				</l:VerticalLayout>
+			</l:Grid>
+		</headerContent>
+		<sections>
+			<ObjectPageSection title="{path: 'Settings>title', formatter: '.getTranslation'}" 
+                showTitle="true" titleUppercase="false" titleLevel="H6">
+				<subSections>
+					<ObjectPageSubSection>
+						<l:Grid defaultSpan="XL2 L3 M4 S6" content="{Settings>content}">
+                            <l:VerticalLayout width="100%">
+                                <m:Label width="100%" text="{path: 'Settings>label', formatter: '.getTranslation'}" />
+                                <m:Text text="{Settings>value}"/>
+                            </l:VerticalLayout>
+                        </l:Grid>
+					</ObjectPageSubSection>
+				</subSections>
+			</ObjectPageSection>
+		</sections>
+	</ObjectPageLayout>
+</mvc:View>

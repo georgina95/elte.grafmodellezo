@@ -1,0 +1,22 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core" >
+	<List id="mentionsList" items="{CatalogModel>/Mentions}" noDataText="{i18n>refineFilters}"
+        mode="MultiSelect" itemPress="onObjectPress">
+		<headerToolbar>
+            <Toolbar>
+                <ToolbarSpacer />
+                <Button icon="sap-icon://delete" text="{i18n>delete}" press="onPressDeleteMention" />
+            </Toolbar>
+        </headerToolbar>
+		<items>
+			<ObjectListItem
+				title="{CatalogModel>mentioned/name}"
+				type="Active" 
+				press="onObjectPress"
+				number=""
+				numberUnit="">
+				<ObjectAttribute title="{i18n>createdAt}" text="{CatalogModel>tweet/created_at}"/>
+				<ObjectAttribute title="{i18n>creator}" text="{CatalogModel>tweet/user/name}"/>
+			</ObjectListItem>
+		</items>
+	</List>
+</core:FragmentDefinition>

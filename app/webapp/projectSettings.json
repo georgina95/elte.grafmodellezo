@@ -1,0 +1,438 @@
+{
+    "layout": "OneColumn",
+    "showNavButton": false,
+    "isLogin": false,
+    "homeTiles": [
+        {
+            "groupTitle": "graphs",
+            "expanded": true,
+            "tiles": [
+                {
+                    "header": "graph1",
+                    "subheader": "",
+                    "unit": "",
+                    "footer": "",
+                    "image": "sap-icon://overview-chart",
+                    "route": "Graph1"
+                },
+                {
+                    "header": "graph2",
+                    "subheader": "",
+                    "unit": "",
+                    "footer": "",
+                    "image": "sap-icon://radar-chart",
+                    "route": "Graph2"
+                }
+            ]
+        },
+        {
+            "groupTitle": "technicalInfo",
+            "expanded": true,
+            "tiles": [
+                {
+                    "header": "dataManagement",
+                    "subheader": "",
+                    "unit": "",
+                    "footer": "",
+                    "image": "sap-icon://edit",
+                    "route": "ManageData"
+                },
+                {
+                    "header": "projectDetails",
+                    "subheader": "",
+                    "unit": "",
+                    "footer": "",
+                    "image": "sap-icon://document-text",
+                    "route": "ProjectDetails"
+                },
+                {
+                    "header": "references",
+                    "subheader": "",
+                    "unit": "",
+                    "footer": "",
+                    "image": "sap-icon://chain-link",
+                    "route": "References"
+                }
+            ]
+        }
+    ],
+    "ManageData": {
+        "currentType": "tweets",
+        "maxFollowers": 88598557,
+        "maxStatuses": 5411536,
+        "filters": {
+            "tweets": {
+                "created_at": {
+                    "key1": "",
+                    "operator": "BT",
+                    "value1": "",
+                    "key2": "",
+                    "value2": "",
+                    "objectPath": "created_at"
+                },
+                "id": {
+                    "key1": "",
+                    "operator": "Contains",
+                    "value1": "",
+                    "key2": "",
+                    "value2": "",
+                    "objectPath": "id"
+                },
+                "place_id": {
+                    "key1": "",
+                    "operator": "EQ",
+                    "value1": "",
+                    "key2": "",
+                    "value2": "",
+                    "objectPath": "place_id"
+                },
+                "text": {
+                    "key1": "",
+                    "operator": "Contains",
+                    "value1": "",
+                    "key2": "",
+                    "value2": "",
+                    "objectPath": "text"
+                },
+                "sensitive": {
+                    "key1": "",
+                    "operator": "EQ",
+                    "value1": "None",
+                    "key2": "",
+                    "value2": "",
+                    "objectPath": "sensitive"
+                },
+                "user_id": {
+                    "key1": "",
+                    "operator": "Contains",
+                    "value1": "",
+                    "key2": "",
+                    "value2": "",
+                    "objectPath": "user_id"
+                }
+            },
+            "users": {
+                "created_at": {
+                    "key1": "",
+                    "operator": "BT",
+                    "value1": "",
+                    "key2": "",
+                    "value2": "",
+                    "objectPath": "created_at"
+                },
+                "id": {
+                    "key1": "",
+                    "operator": "Contains",
+                    "value1": "",
+                    "key2": "",
+                    "value2": "",
+                    "objectPath": "id"
+                },
+                "description": {
+                    "key1": "",
+                    "operator": "Contains",
+                    "value1": "",
+                    "key2": "",
+                    "value2": "",
+                    "objectPath": "description"
+                },
+                "followers_count": {
+                    "key1": 0,
+                    "operator": "BT",
+                    "value1": "",
+                    "key2": 0,
+                    "value2": "",
+                    "objectPath": "followers_count"
+                },
+                "location": {
+                    "key1": "",
+                    "operator": "Contains",
+                    "value1": "",
+                    "key2": "",
+                    "value2": "",
+                    "objectPath": "location"
+                },
+                "name": {
+                    "key1": "",
+                    "operator": "Contains",
+                    "value1": "",
+                    "key2": "",
+                    "value2": "",
+                    "objectPath": "name"
+                },
+                "screen_name": {
+                    "key1": "",
+                    "operator": "Contains",
+                    "value1": "",
+                    "key2": "",
+                    "value2": "",
+                    "objectPath": "screen_name"
+                },
+                "statuses_count": {
+                    "key1": 0,
+                    "operator": "BT",
+                    "value1": "",
+                    "key2": 0,
+                    "value2": "",
+                    "objectPath": "statuses_count"
+                }
+            },
+            "places": {
+                "id": {
+                    "key1": "",
+                    "operator": "Contains",
+                    "value1": "",
+                    "key2": "",
+                    "value2": "",
+                    "objectPath": "id"
+                },
+                "name": {
+                    "key1": "",
+                    "operator": "Contains",
+                    "value1": "",
+                    "key2": "",
+                    "value2": "",
+                    "objectPath": "name"
+                },
+                "full_name": {
+                    "key1": "",
+                    "operator": "Contains",
+                    "value1": "",
+                    "key2": "",
+                    "value2": "",
+                    "objectPath": "full_name"
+                },
+                "country": {
+                    "key1": "",
+                    "operator": "EQ",
+                    "value1": "",
+                    "key2": "",
+                    "value2": "",
+                    "objectPath": "country_code"
+                },
+                "place_type": {
+                    "key1": "",
+                    "operator": "EQ",
+                    "value1": "",
+                    "key2": "",
+                    "value2": "",
+                    "objectPath": "place_type"
+                }
+            },
+            "hashtags": {
+                "created_at": {
+                    "key1": "",
+                    "operator": "BT",
+                    "value1": "",
+                    "key2": "",
+                    "value2": "",
+                    "objectPath": "tweet/created_at"
+                },
+                "user_id": {
+                    "key1": "",
+                    "operator": "EQ",
+                    "value1": "",
+                    "key2": "",
+                    "value2": "",
+                    "objectPath": "tweet/user/id"
+                },
+                "text": {
+                    "key1": "",
+                    "operator": "Contains",
+                    "value1": "",
+                    "key2": "",
+                    "value2": "",
+                    "objectPath": "text"
+                }
+            },
+            "mentions": {
+                "created_at": {
+                    "key1": "",
+                    "operator": "BT",
+                    "value1": "",
+                    "key2": "",
+                    "value2": "",
+                    "objectPath": "tweet/created_at"
+                },
+                "user_id": {
+                    "key1": "",
+                    "operator": "EQ",
+                    "value1": "",
+                    "key2": "",
+                    "value2": "",
+                    "objectPath": "tweet/user/id"
+                },
+                "mentioned_user_id": {
+                    "key1": "",
+                    "operator": "EQ",
+                    "value1": "",
+                    "key2": "",
+                    "value2": "",
+                    "objectPath": "mentioned_user_id"
+                }
+            }
+        }
+    },
+    "ProjectDetails": {
+        "title": "appTitle",
+        "infos": [
+            {
+                "label": "creator",
+                "value": "Hennel Georgina"
+            },
+            {
+                "label": "contact",
+                "value": "georgina95@gmail.com"
+            },
+            {
+                "label": "mentor",
+                "value": "dr. Vincellér Zoltán"
+            },
+            {
+                "label": "mentor",
+                "value": "Béleczki András"
+            },
+            {
+                "label": "createdAt",
+                "value": "December 2020"
+            }
+        ],
+        "sections": [
+            {
+                "title": "institute",
+                "content": [
+                    {
+                        "label": "institute",
+                        "value": "Eötvös Loránd Tudományegyetem"
+                    },
+                    {
+                        "label": "faculty",
+                        "value": "Informatikai Kar"
+                    },
+                    {
+                        "label": "department",
+                        "value": "Információs Rendszerek Tanszék"
+                    }
+                ]
+            },
+            {
+                "title": "institute",
+                "content": [
+                    {
+                        "label": "institute",
+                        "value": "Eötvös Loránd Tudományegyetem"
+                    },
+                    {
+                        "label": "faculty",
+                        "value": "Informatikai Kar"
+                    },
+                    {
+                        "label": "department",
+                        "value": "Információs Rendszerek Tanszék"
+                    }
+                ]
+            }
+        ]
+    },
+    "Hyperlinks": {
+        "categories": [
+            {
+                "text": "UI5",
+                "categories": [
+                    {
+                        "text": "UI5 API reference",
+                        "url": "https://sapui5.hana.ondemand.com",
+                        "topic": "UI5",
+                        "description": "Official UI5 reference by SAP"
+                    },
+                    {
+                        "text": "Fiori guidelines",
+                        "url": "https://experience.sap.com/fiori-design-web/",
+                        "topic": "UI5",
+                        "description": "Fiori design guidelines"
+                    }
+                ]
+            },
+            {
+                "text": "Example",
+                "categories": [
+                    {
+                        "text": "CLOUD CAP project",
+                        "url": "https://github.com/SAP-samples/hana-opensap-cloud-2020",
+                        "topic": "Example",
+                        "description": "Git repo"
+                    },
+                    {
+                        "text": "Multitenancy CAP project",
+                        "url": "https://github.com/SAP-samples/cloud-cap-multitenancy",
+                        "topic": "Example",
+                        "description": "Git repo"
+                    }
+                ]
+            },
+            {
+                "text": "CAP",
+                "categories": [
+                    {
+                        "text": "CAP documentation",
+                        "url": "https://cap.cloud.sap/docs/advanced/",
+                        "topic": "CAP",
+                        "description": "Official capire reference"
+                    },
+                    {
+                        "text": "Fiori elements CAP app",
+                        "url": "https://blogs.sap.com/2020/09/06/developing-a-fiori-elements-app-with-cap-and-fiori-tools/",
+                        "topic": "CAP",
+                        "description": "Project development guide"
+                    },
+                    {
+                        "text": "Building a complex CAP app video (13h)",
+                        "url": "https://www.youtube.com/playlist?list=PL6RpkC85SLQAHZ_V3cZsTok0T6BvI4HT1",
+                        "topic": "CAP",
+                        "description": "Project development guide video"
+                    }
+                ]
+            },
+            {
+                "text": "Twitter",
+                "categories": [
+                    {
+                        "text": "Twitter API documentation",
+                        "url": "https://developer.twitter.com/en/docs/twitter-api",
+                        "topic": "Twitter",
+                        "description": "Official Twitter API documentation"
+                    },
+                    {
+                        "text": "Twitter API example",
+                        "url": "https://github.com/twitterdev/Twitter-API-v2-sample-code",
+                        "topic": "Twitter",
+                        "description": "Git repo"
+                    }
+                ]
+            },
+            {
+                "text": "Technical",
+                "categories": [
+                    {
+                        "text": "OData v4 URL conventions",
+                        "url": "http://docs.oasis-open.org/odata/odata/v4.0/os/part2-url-conventions/odata-v4.0-os-part2-url-conventions.html",
+                        "topic": "Technical",
+                        "description": "Official OData v4 syntax reference"
+                    },
+                    {
+                        "text": "Getting started with SAP Business Application Studio",
+                        "url": "https://blogs.sap.com/2020/03/16/sap-business-application-studio-getting-started-with-cap-and-sap-hana-service-on-cf/",
+                        "topic": "Technical",
+                        "description": "Project development guide"
+                    },
+                    {
+                        "text": "i18n annotations",
+                        "url": "https://openui5.hana.ondemand.com/1.34.9/docs/guide/831039835e7c4da3a8a0b49567573afe.html",
+                        "topic": "Technical",
+                        "description": "i18n syntax cheat sheet"
+                    }
+                ]
+            }
+        ]
+    }
+}

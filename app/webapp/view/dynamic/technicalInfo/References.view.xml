@@ -1,0 +1,58 @@
+<mvc:View
+        controllerName="eltegrafmodellezo.app.controller.dynamic.technicalInfo.References"
+        xmlns="sap.ui.table"
+        xmlns:mvc="sap.ui.core.mvc"
+        xmlns:m="sap.m"
+        xmlns:u="sap.ui.unified"
+        xmlns:core="sap.ui.core"
+        height="100%">
+    <m:Page
+            showHeader="false"
+            enableScrolling="false"
+            backgroundDesign="Transparent">
+        <m:content>
+            <TreeTable
+                    id="TreeTableBasic"
+                    rows="{path:'Settings>/Hyperlinks', templateShareable: false, parameters: {arrayNames:['categories']}}"
+                    selectionMode="Single"
+                    selectionBehavior="Row"
+                    enableSelectAll="false"
+                    minAutoRowCount="5"
+                    visibleRowCountMode="Interactive"
+                    ariaLabelledBy="title">
+                <extension>
+                    <m:OverflowToolbar>
+                        <m:Title id="title" text="{i18n>references}"/>
+                        <m:ToolbarSpacer/>
+                        <m:Button text="{i18n>collapseAll}" press="onCollapseAll"/>
+                        <m:Button text="{i18n>collapseSelection}" press="onCollapseSelection"/>
+                        <m:Button text="{i18n>expandFirstLevel}" press="onExpandFirstLevel"/>
+                        <m:Button text="{i18n>expandSelection}" press="onExpandSelection"/>
+                    </m:OverflowToolbar>
+                </extension>
+                <columns>
+                    <Column width="25rem">
+                        <m:Label text="{i18n>topic}"/>
+                        <template>
+                            <m:Text text="{Settings>text}" wrapping="false" />
+                        </template>
+                    </Column>
+                    <Column width="5rem"  >
+                        <m:Label text="{i18n>link}" />
+                        <template>
+                            <m:Link text="LINK" href="{Settings>url}" target="_blank"
+                                    visible="{path: 'Settings>url', formatter: '.isNotNull'}"/>
+                        </template>
+                    </Column>
+                    <Column >
+                        <m:Label text="{i18n>description}" />
+                        <template>
+                            <m:Text text="{Settings>description}"
+                                    visible="{path: 'Settings>description', formatter: '.isNotNull'}"/>
+                        </template>
+                    </Column>
+                </columns>
+            </TreeTable>
+        </m:content>
+    </m:Page>
+</mvc:View>

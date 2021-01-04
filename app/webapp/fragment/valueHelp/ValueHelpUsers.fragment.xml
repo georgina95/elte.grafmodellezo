@@ -1,0 +1,29 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<SelectDialog
+		id="ValueHelpUsers"
+		title="{i18n>selection}"
+		
+        search="onSearchValueHelpUsers"
+		confirm="onConfirmValueHelpUsers"
+		cancel="onCancelValueHelp"
+		
+        multiSelect="false"
+		rememberSelections="true"
+		showClearButton="false"
+        
+        items="{CatalogModel>/Users}">
+        <items>
+            <ObjectListItem 
+				intro="{CatalogModel>id}"
+				title="{ path: 'CatalogModel>name' }"
+				type="Active" 
+				number="{CatalogModel>statuses_count}"
+				numberUnit="{i18n>statusesCount}">
+				<ObjectAttribute title="{i18n>followersCount}" text="{CatalogModel>followers_count}"/>
+				<ObjectAttribute title="{i18n>location}" text="{CatalogModel>location}"/>
+			</ObjectListItem>
+        </items>
+	</SelectDialog>
+</core:FragmentDefinition>
